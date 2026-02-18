@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- =============================
+       META
+  ============================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAYAAKU</title>
+
+  <!-- STYLES -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="light">
+
+  <!-- =============================
+       GLOBAL UI
+  ============================== -->
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" onclick="toggleTheme()">Dark</button>
+
+  <!-- Grain Overlay -->
+  <div class="grain"></div>
+
+  <!-- Background Text -->
+  <div class="background-text">PORTFOLIO</div>
+
+
+  <!-- =============================
+       HERO SECTION
+  ============================== -->
+  <main class="hero">
+
+    <div class="hero-window">
+
+      <!-- Window Bar -->
+      <div class="main-window-bar">
+        <span class="main-window-title">Portfolio</span>
+        <div class="main-window-close"></div>
+      </div>
+
+      <div class="hero-content">
+
+        <!-- Title Lockup -->
+        <div class="hero-title">
+          <div class="title-row">
+            <span class="title-saya">SAYA</span>
+            <span class="title-aku">AKU</span>
+          </div>
+        </div>
+
+        <div class="hero-subtitle">CREATIONS</div>
+
+        <!-- Navigation Grid -->
+        <div class="nav-grid">
+          <button onclick="openModal('about')">
+            <img src="images/icons/About.svg" alt="About" />
+            <span>About</span>
+          </button>
+
+          <button onclick="openModal('projects')">
+            <img src="images/icons/Projects.svg" alt="Projects" />
+            <span>Projects</span>
+          </button>
+
+          <button onclick="openModal('designs')">
+            <img src="images/icons/Designs.svg" alt="Designs" />
+            <span>Designs</span>
+          </button>
+
+          <button onclick="openModal('misc')">
+            <img src="images/icons/Misc.svg" alt="Misc" />
+            <span>Misc</span>
+          </button>
+
+          <button onclick="openModal('contact')">
+            <img src="images/icons/Contact.svg" alt="Contact" />
+            <span>Contact</span>
+          </button>
+        </div>
+
+        <p class="hero-paragraph">
+          designer and illustrator
+        </p>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!-- =============================
+       WINDOWS
+  ============================== -->
+
+  <!-- =============================
+       ABOUT WINDOW
+  ============================== -->
+  <div class="window draggable" id="about">
+
+    <div class="window-bar">
+      <span class="window-title">About</span>
+      <button class="window-close" onclick="closeWindow('about')"></button>
+    </div>
+
+    <div class="about-wrapper">
+
+      <div class="about-intro">
+        <h2 class="about-name">Saya Aku</h2>
+        <p class="about-role">Designer & Illustrator</p>
+      </div>
+
+      <div class="about-grid">
+
+        <div class="about-bio">
+          <p>
+            I create minimal, editorial digital experiences inspired by 
+            fashion, contemporary art direction, and modern interface systems.
+          </p>
+          <p>
+            My work focuses on clarity, typography, and structure —
+            blending expressive visuals with restrained layout systems.
+          </p>
+        </div>
+
+        <div class="about-meta">
+
+          <div class="meta-block">
+            <span class="meta-title">Skills</span>
+            <ul>
+              <li>UI / UX Design</li>
+              <li>Brand Systems</li>
+              <li>Typography</li>
+              <li>Illustration</li>
+            </ul>
+          </div>
+
+          <div class="meta-block">
+            <span class="meta-title">Tools</span>
+            <ul>
+              <li>Figma</li>
+              <li>Adobe Suite</li>
+              <li>HTML / CSS</li>
+              <li>Creative Coding</li>
+            </ul>
+          </div>
+
+          <div class="meta-block">
+            <span class="meta-title">Location</span>
+            <p>Based in —</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =============================
+       PROJECTS WINDOW
+  ============================== -->
+  <div class="window draggable" id="projects">
+
+    <!-- Folder Tabs -->
+    <div class="browser-tabs">
+      <button class="browser-tab active"
+        onclick="switchTab('projects','overview', this)">
+        Overview
+      </button>
+
+      <button class="browser-tab"
+        onclick="switchTab('projects','gallery', this)">
+        Gallery
+      </button>
+
+      <button class="browser-tab"
+        onclick="switchTab('projects','process', this)">
+        Process
+      </button>
+    </div>
+
+    <div class="window-bar">
+      <span class="window-title">Projects</span>
+      <button class="window-close" onclick="closeWindow('projects')"></button>
+    </div>
+
+    <div class="tab-wrapper">
+
+      <div class="tab-content active" data-tab="overview">
+        <h2>Selected Work</h2>
+        <p>Projects go here.</p>
+      </div>
+
+      <div class="tab-content" data-tab="gallery">
+        <div class="project">
+          <img src="images/work.jpg" alt="Project preview" />
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="process">
+        <p>Behind the scenes, sketches, thinking process.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- =============================
+       DESIGNS WINDOW
+  ============================== -->
+  <div class="window draggable" id="designs">
+    <div class="window-bar">
+      <span class="window-title">Designs</span>
+      <button class="window-close" onclick="closeWindow('designs')"></button>
+    </div>
+
+    <h2>Designs</h2>
+    <p>Design explorations.</p>
+  </div>
+
+
+  <!-- =============================
+       MISC WINDOW
+  ============================== -->
+  <div class="window draggable" id="misc">
+    <div class="window-bar">
+      <span class="window-title">Misc</span>
+      <button class="window-close" onclick="closeWindow('misc')"></button>
+    </div>
+
+    <h2>Misc</h2>
+    <p>Experiments and side projects.</p>
+  </div>
+
+
+  <!-- =============================
+       CONTACT WINDOW
+  ============================== -->
+  <div class="window draggable" id="contact">
+    <div class="window-bar">
+      <span class="window-title">Contact</span>
+      <button class="window-close" onclick="closeWindow('contact')"></button>
+    </div>
+
+    <h2>Contact</h2>
+    <p>youremail@example.com</p>
+  </div>
+
+
+  <!-- =============================
+       OVERLAY
+  ============================== -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- SCRIPTS -->
+  <script src="script.js"></script>
+
+</body>
+</html>
