@@ -1,23 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <!-- =============================
+  <head>
+    <!-- =============================
        META
   ============================== -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SAYAAKU</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAYAAKU</title>
 
-  <!-- STYLES -->
-  <link rel="stylesheet" href="style.css" />
-</head>
+    <!-- STYLES -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body class="light">
-
-  <!-- =============================
+   <!-- =============================
        GLOBAL UI
   ============================== -->
 
+ <body class="light">
   <!-- Theme Toggle -->
   <button class="theme-toggle" onclick="toggleTheme()">Dark</button>
 
@@ -25,238 +24,472 @@
   <div class="grain"></div>
 
   <!-- Background Text -->
-  <div class="background-text">PORTFOLIO</div>
+  <div class="background-text">SAYA AKU</div>
 
+  <div class="fog-layer"></div>
+  <div class="dark-wash"></div>
+  <div class="hero-bloom"></div>
+  <div class="bottom-wave-fog">
+    <div class="fog-base"></div>
+  </div>
 
-  <!-- =============================
+    <!-- =============================
        HERO SECTION
   ============================== -->
-  <main class="hero">
 
-    <div class="hero-window">
-
-      <!-- Window Bar -->
-      <div class="main-window-bar">
-        <span class="main-window-title">Portfolio</span>
-        <div class="main-window-close"></div>
+    <main class="hero">
+      <div class="hero-float hero-float-top-left">
+        <div>Portfolio</div>
+        <div class="hero-float-top-sub">selected work / visual experiments / interface play</div>
       </div>
 
-      <div class="hero-content">
+      <div class="hero-window">
+        <!-- Window Bar -->
+        <div class="main-window-bar">
+          <span class="main-window-title">Portfolio</span>
+          <div class="main-window-close"></div>
+        </div>
 
-        <!-- Title Lockup -->
-        <div class="hero-title">
-          <div class="title-row">
-            <span class="title-saya">SAYA</span>
-            <span class="title-aku">AKU</span>
+          <!-- Navigation Grid -->
+          <div class="nav-grid">
+            <button onclick="openWindow('about')">
+              <img src="images/icons/About.svg" alt="About" />
+              <span>About</span>
+            </button>
+
+            <button onclick="openWindow('projects')">
+              <img src="images/icons/Projects.svg" alt="Projects" />
+              <span>Projects</span>
+            </button>
+
+            <button onclick="openWindow('designs')">
+              <img src="images/icons/Designs.svg" alt="Designs" />
+              <span>Designs</span>
+            </button>
+
+            <button onclick="openWindow('misc')">
+              <img src="images/icons/Misc.svg" alt="Misc" />
+              <span>Misc</span>
+            </button>
+
+            <button onclick="openWindow('contact')">
+              <img src="images/icons/Contact.svg" alt="Contact" />
+              <span>Contact</span>
+            </button>
+          </div>
+
+          <p class="hero-paragraph">designer and illustrator</p>
+        </div>
+      </div>
+
+      <div class="hero-float hero-float-bottom">
+        <div class="hero-contact-icons">
+          <a href="#">✦</a>
+          <a href="#">◦</a>
+          <a href="#">✳</a>
+        </div>
+
+        <span class="hero-bottom-line-main">
+          Available for freelance / collaborations
+        </span>
+
+        <span class="hero-bottom-line-sub">
+          © 2026 Sayaaku CS
+        </span>
+      </div>
+    </main>
+
+    <div id="desktop"></div>
+
+    <!-- =============================
+   ABOUT WINDOW
+============================= -->
+
+    <div class="window draggable" id="about">
+      <div class="window-bar">
+        <span class="window-title">About</span>
+        <button class="window-close" onclick="closeWindow('about')"></button>
+      </div>
+
+      <div class="about-wrapper">
+        <!-- TOP SECTION (Sticky) -->
+        <div class="about-intro">
+          <h2 class="about-name">Miguel Corral</h2>
+          <p class="about-role">Designer & Illustrator</p>
+          <div class="about-subtext">
+            Current Student at Angelina College
           </div>
         </div>
 
-        <div class="hero-subtitle">CREATIONS</div>
-
-        <!-- Navigation Grid -->
-        <div class="nav-grid">
-          <button onclick="openModal('about')">
-            <img src="images/icons/About.svg" alt="About" />
-            <span>About</span>
-          </button>
-
-          <button onclick="openModal('projects')">
-            <img src="images/icons/Projects.svg" alt="Projects" />
-            <span>Projects</span>
-          </button>
-
-          <button onclick="openModal('designs')">
-            <img src="images/icons/Designs.svg" alt="Designs" />
-            <span>Designs</span>
-          </button>
-
-          <button onclick="openModal('misc')">
-            <img src="images/icons/Misc.svg" alt="Misc" />
-            <span>Misc</span>
-          </button>
-
-          <button onclick="openModal('contact')">
-            <img src="images/icons/Contact.svg" alt="Contact" />
-            <span>Contact</span>
-          </button>
-        </div>
-
-        <p class="hero-paragraph">
-          designer and illustrator
-        </p>
-
-      </div>
-    </div>
-  </main>
-
-  <!-- =============================
-       WINDOWS
-  ============================== -->
-
-  <!-- =============================
-       ABOUT WINDOW
-  ============================== -->
-  <div class="window draggable" id="about">
-
-    <div class="window-bar">
-      <span class="window-title">About</span>
-      <button class="window-close" onclick="closeWindow('about')"></button>
-    </div>
-
-    <div class="about-wrapper">
-
-      <div class="about-intro">
-        <h2 class="about-name">Saya Aku</h2>
-        <p class="about-role">Designer & Illustrator</p>
-      </div>
-
-      <div class="about-grid">
-
-        <div class="about-bio">
-          <p>
-            I create an array of different design projects ranging from simple one
-			  time flyers to something more unique, longer lasting and personal such as brands
-			  and logos.
-          </p>
-          <p>
-            My work focuses on clarity, typography, and color palletes that
-			  merge together to create a cohesive design unique to each project.
-          </p>
-        </div>
-
-        <div class="about-meta">
-
-          <div class="meta-block">
-            <span class="meta-title">Skills</span>
-            <ul>
-              <li>Logo Design</li>
-              <li>Marketing Design</li>
-              <li>Typography</li>
-              <li>Illustration</li>
-              <li>Photography</li>
+        <!-- BOTTOM SECTION -->
+        <div class="about-bottom">
+          <!-- LEFT COLUMN (Scrollable) -->
+          <div class="about-bio about-bio-scroll">
+            <p>
+              Hi, I'm Miguel — a designer and illustrator exploring bold visual 
+              systems across digital, print, and experiential spaces. I enjoy 
+              creating work that is expressive, adaptable, and built to live 
+              across multiple mediums.
+            </p>
+            <ul class="about-list">
+              <li>Creating <span class="text-highlight">visual</span> branding identities</li>
+              <li>Designing <span class="text-highlight">promotional</span> material</li>
+              <li>Designing music graphics</li>
+              <li>Creating <span class="text-highlight">illustration</span> for multiple applications</li>
             </ul>
-          </div>
+            <p>Interested in working with me? Send an email at: 
+              <span class="text-highlight">123-----------@GMAIL.COM</span>
+            </p>
+            <h3 class="about-heading">EDUCATION</h3>
 
-          <div class="meta-block">
-            <span class="meta-title">Tools</span>
-            <ul>
-              <li>Adobe Illustrator</li>
-              <li>Adobe Photoshop</li>
-              <li>Adobe Lightroom</li>
-              <li>Clip Studio Paint</li>
-              <li>Creative Coding</li>
+            <p>Associate of Applied Science in Design & Applied Arts – Graphic Arts</p>
+
+            <h3 class="about-heading">OTHER INTERESTS</h3>
+
+            <ul class="about-list">
+              <li>Arts and Crafts</li>
+              <li>Carpentry</li>
+              <li>Gardening</li>
+              <li>Electronics Tinkering</li>
+              <li>Cooking</li>
+              <li>Music/Video Games</li>
             </ul>
+
+            <h3 class="about-heading">LANGUEGE PROFICIENCY</h3>
+
+            <div class="about-text">
+              <p>I have native fluency in both <span class="text-highlight">English</span>
+                 and <span class="text-highlight">Spanish</span>
+                </p>
+              <div class="about-indent">
+              <p>Can also understand to some degree other variations of the spanish language</p>
+              </div>
+            </div>
           </div>
 
-          <div class="meta-block">
-            <span class="meta-title">Location</span>
-            <p>Based in Texas</p>
-          </div>
+          <!-- RIGHT COLUMN (Static) -->
+          <div class="about-meta">
+            <div class="meta-block">
+              <span class="meta-title">Skills</span>
+              <ul>
+                <li>Layout</li>
+                <li>Branding</li>
+                <li>Typography</li>
+                <li>Illustration</li>
+                <li>Photography</li>
+              </ul>
+            </div>
 
+            <div class="meta-block">
+              <span class="meta-title">Tools</span>
+              <ul>
+                <li>Clip Studio paint</li>
+                <li>Adobe Suite</li>
+                <li>Blender</li>
+              </ul>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-
-  <!-- =============================
-       PROJECTS WINDOW
-  ============================== -->
-  <div class="window draggable" id="projects">
-
-    <!-- Folder Tabs -->
-    <div class="browser-tabs">
-      <button class="browser-tab active"
-        onclick="switchTab('projects','overview', this)">
-        Overview
-      </button>
-
-      <button class="browser-tab"
-        onclick="switchTab('projects','gallery', this)">
-        Gallery
-      </button>
-
-      <button class="browser-tab"
-        onclick="switchTab('projects','process', this)">
-        Process
-      </button>
+      <!-- Sticky Note -->
+      <img class="about-sticky" src="images/sticky-note.png" />
+      <div class="about-polaroid-secret">
+        <span class="tape tape-left"></span>
+        <span class="tape tape-right"></span>
+        <img src="images/Self-Polaroid.webp" alt="Hidden portrait" />
+      </div>
     </div>
 
-    <div class="window-bar">
+<!-- =============================
+   PROJECTS WINDOW
+============================= -->
+
+<div class="window draggable" id="projects">
+  <div class="window-bar project-window-bar">
+    <div class="project-bar-left">
       <span class="window-title">Projects</span>
-      <button class="window-close" onclick="closeWindow('projects')"></button>
+
+      <div class="project-bar-tabs">
+        <button class="bar-tab active" data-tab="overview">Overview</button>
+        <span class="bar-tab-divider"></span>
+        <button class="bar-tab" data-tab="gallery">Gallery</button>
+        <span class="bar-tab-divider"></span>
+        <button class="bar-tab" data-tab="process">Process</button>
+      </div>
     </div>
 
-    <div class="tab-wrapper">
+    <button
+      class="window-fullscreen"
+      type="button"
+      onclick="toggleWindowFullscreen('projects')"
+      aria-label="Toggle fullscreen"
+      title="Fullscreen"
+    ></button>
 
-      <div class="tab-content active" data-tab="overview">
-        <h2>Selected Work</h2>
-        <p>Projects go here.</p>
+    <button class="window-close" onclick="closeWindow('projects')"></button>
+  </div>
+
+  <div class="window-scroll">
+    <div class="tab-content active" data-tab="overview">
+      <div class="projects-grid">
+        <div class="project-card" onclick="openProject('project1', this)">
+          <img src="images/TT-LP.jpg" loading="lazy" />
+          <div class="project-info">
+            <h3>Project One</h3>
+            <p>
+              Editorial digital concept exploring typography and motion
+              interaction.
+            </p>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openProject('project2', this)">
+          <img src="images/EF-BL.jpg" loading="lazy" />
+          <div class="project-info">
+            <h3>Project Two</h3>
+            <p>
+              Minimal UI system focused on layout structure and restrained
+              color.
+            </p>
+          </div>
+        </div>
+
       </div>
+    </div>
 
-      <div class="tab-content" data-tab="gallery">
-        <div class="project">
-          <img src="images/work.jpg" alt="Project preview" />
+    <div class="tab-content" data-tab="gallery">
+      <div id="gallery-content">
+        <p>Select a project from Overview.</p>
+      </div>
+    </div>
+
+    <div class="tab-content" data-tab="process">
+      <p>Behind the scenes, sketches, thinking process.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =============================
+   DESIGNS WINDOW
+============================= -->
+<div class="window draggable" id="designs">
+  <div class="window-bar">
+    <span class="window-title">Designs</span>
+
+    <button
+      class="window-fullscreen"
+      type="button"
+      onclick="toggleWindowFullscreen('designs')"
+      aria-label="Toggle fullscreen"
+      title="Fullscreen"
+    ></button>
+
+    <button class="window-close" onclick="closeWindow('designs')"></button>
+  </div>
+
+  <div class="window-scroll designs-scroll">
+    <div class="designs-container">
+
+      <!-- PROJECT 1 -->
+      <div class="design-item">
+        <div class="design-images three-images">
+          <img
+            src="images/Gallery/Movie-Recreation-Posters/MP-WallE.jpg"
+            loading="lazy"
+            alt="Editorial poster 1"
+          />
+          <img
+            src="images/Gallery/Movie-Recreation-Posters/MP-KingK.jpg"
+            loading="lazy"
+            alt="Editorial poster 2"
+          />
+          <img
+            src="images/Gallery/Movie-Recreation-Posters/MP-Ali.jpg"
+            loading="lazy"
+            alt="Editorial poster 3"
+          />
+        </div>
+
+        <div class="design-text">
+          <h3>Editorial Poster Series</h3>
+          <p>
+            A typographic poster exploration focused on layout rhythm and visual
+            hierarchy using bold condensed type and layered imagery.
+          </p>
+          <span class="design-meta">2025 · Poster Design</span>
         </div>
       </div>
 
-      <div class="tab-content" data-tab="process">
-        <p>Behind the scenes, sketches, thinking process.</p>
+      <!-- PROJECT 2 -->
+      <div class="design-item">
+        <div class="design-images two-images">
+          <img
+            src="images/Gallery/Movie-Recreation-Posters/MP-Ali.jpg"
+            loading="lazy"
+            alt="Flyer design 1"
+          />
+          <img
+            src="images/Gallery/Movie-Recreation-Posters/MP-Ali.jpg"
+            loading="lazy"
+            alt="Flyer design 2"
+          />
+        </div>
+
+        <div class="design-text">
+          <h3>Flyer System</h3>
+          <p>
+            Promotional flyers built around an 11x14 grid system. Designed for
+            nightlife events and digital distribution.
+          </p>
+          <span class="design-meta">2024 · Graphic Design</span>
+        </div>
+      </div>
+
+      <!-- PROJECT 3 -->
+      <div class="design-item">
+        <div class="design-images one-image">
+          <img
+            src="images/Gallery/Movie-Recreation-Posters/MP-Halloween.jpg"
+            loading="lazy"
+            alt="Single poster design"
+          />
+        </div>
+
+        <div class="design-text">
+          <h3>Halloween Poster</h3>
+          <p>
+            A single-poster concept focused on mood, contrast, and restrained
+            typography with cinematic composition.
+          </p>
+          <span class="design-meta">2024 · Poster Design</span>
+        </div>
       </div>
 
     </div>
   </div>
+</div>
+</div>
 
-
-  <!-- =============================
-       DESIGNS WINDOW
-  ============================== -->
-  <div class="window draggable" id="designs">
-    <div class="window-bar">
-      <span class="window-title">Designs</span>
-      <button class="window-close" onclick="closeWindow('designs')"></button>
-    </div>
-
-    <h2>Designs</h2>
-    <p>Design explorations.</p>
+<!-- =============================
+   MISC WINDOW
+============================= -->
+<div class="window draggable" id="misc">
+  <div class="window-bar">
+    <span class="window-title">Misc</span>
+    <button class="window-close" onclick="closeWindow('misc')"></button>
   </div>
 
-
-  <!-- =============================
-       MISC WINDOW
-  ============================== -->
-  <div class="window draggable" id="misc">
-    <div class="window-bar">
-      <span class="window-title">Misc</span>
-      <button class="window-close" onclick="closeWindow('misc')"></button>
-    </div>
-
-    <h2>Misc</h2>
-    <p>Experiments and side projects.</p>
+  <div class="misc-window-note">
+    Double-click to fullscreen · Hold space + click for polaroid view
   </div>
 
-
-  <!-- =============================
+  <div class="window-scroll">
+    <div class="misc-scatter">
+      <img
+        class="draggable-photo"
+        src="images/work.jpg"
+        loading="lazy"
+        data-caption="Late-night edits and works in progress."
+      />
+      <img
+        class="draggable-photo"
+        src="images/work.jpg"
+        loading="lazy"
+        data-caption="Late-night edits and works in progress."
+      />
+      <img
+        class="draggable-photo"
+        src="images/work.jpg"
+        loading="lazy"
+        data-caption="Late-night edits and works in progress."
+      />
+      <img
+        class="draggable-photo"
+        src="images/work.jpg"
+        loading="lazy"
+        data-caption="Late-night edits and works in progress."
+      />
+      <img
+        class="draggable-photo"
+        src="images/work.jpg"
+        loading="lazy"
+        data-caption="Late-night edits and works in progress."
+      />
+      <img
+        class="draggable-photo"
+        src="images/work.jpg"
+        loading="lazy"
+        data-caption="Late-night edits and works in progress."
+      />
+      <img
+        class="draggable-photo"
+        src="images/work.jpg"
+        loading="lazy"
+        data-caption="Late-night edits and works in progress."
+      />
+      <img
+        class="draggable-photo"
+        src="images/work.jpg"
+        loading="lazy"
+        data-caption="Late-night edits and works in progress."
+      />
+    </div>
+  </div>
+</div>
+    <!-- =============================
        CONTACT WINDOW
   ============================== -->
-  <div class="window draggable" id="contact">
-    <div class="window-bar">
-      <span class="window-title">Contact</span>
-      <button class="window-close" onclick="closeWindow('contact')"></button>
-    </div>
-
-    <h2>Contact</h2>
-    <p>youremail@example.com</p>
+   <div class="window draggable" id="contact">
+  <div class="window-bar">
+    <span class="window-title">Contact</span>
+    <button class="window-close" onclick="closeWindow('contact')"></button>
   </div>
 
+  <div class="window-scroll contact-scroll">
+    <div class="contact-content">
+      <h2 class="contact-main-title">Let’s Connect</h2>
 
-  <!-- =============================
+      <p class="contact-description">
+        Available for freelance work, collaborations, and selected projects.
+      </p>
+
+      <div class="contact-image-wrap">
+        <img src="images/work.jpg" alt="Contact preview" class="contact-image" />
+      </div>
+
+      <div class="contact-subtext">
+        <div class="contact-email">
+          <span class="contact-email-label">Email me at :</span>
+          <span class="contact-email-address" id="contactEmail">
+          youremail@example.com
+          </span>
+        </div>
+        <div class="contact-note">
+          Feel free to reach out for project inquiries or creative collaborations.
+        </div>
+      </div>
+
+      <button class="contact-action">Button</button>
+    </div>
+  </div>
+</div>
+
+    <!-- =============================
        OVERLAY
   ============================== -->
-  <div id="overlay" class="overlay"></div>
+    <div id="overlay" class="overlay"></div>
 
-  <!-- SCRIPTS -->
-  <script src="script.js"></script>
+    <div class="image-viewer" id="imageViewer">
+      <button id="viewerZoom">Zoom</button>
+      <div id="viewerHint" class="viewer-hint">Click outside image to close</div>
+      <img id="viewerImage" />
+    </div>
 
-</body>
+    <div id="polaroidBackdrop"></div>
+
+    <!-- SCRIPTS -->
+    <script src="script.js"></script>
+  </body>
 </html>
