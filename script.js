@@ -8,7 +8,6 @@ let highestZ = 2000;
 const windowState = {};
 const scrollState = {};
 const fullscreenState = {};
-const isMobileLayout = () => window.innerWidth <= 768;
 let activeFullscreenWindow = null;
 
 let activeDrag = null;
@@ -63,28 +62,11 @@ function bringToFront(win) {
 }
 
 window.openWindow = function (id) {
+  if (activeFullscreenWindow && id !== activeFullscreenWindow) return;
+
   const win = document.getElementById(id);
   const overlay = document.getElementById("overlay");
   if (!win) return;
-
-  if (isMobileLayout()) {
-    document.querySelectorAll(".window").forEach((w) => {
-      w.style.display = "none";
-    });
-
-    win.style.display = "block";
-    win.style.left = "";
-    win.style.top = "";
-    win.style.zIndex = "";
-    overlay.classList.add("active");
-
-    if (id === "projects") {
-      projectsTabs.style.display = "none";
-    }
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    return;
-  }
 
   const alreadyOpen = win.style.display === "block";
 
@@ -111,13 +93,16 @@ window.openWindow = function (id) {
 
   bringToFront(win);
 
-  if (id === "projects") {
-    if (!projectsWindow.hasAttribute("data-active-tab")) {
-      projectsWindow.setAttribute("data-active-tab", "overview");
-    }
+  if (id === "projects" && !projectsWindow.hasAttribute("data-active-tab")) {
+    projectsWindow.setAttribute("data-active-tab", "overview");
 
-    positionProjectTabs();
-    projectsTabs.style.display = "flex";
+    const defaultBtn = document.querySelector(
+      '#projects .bar-tab[data-tab="overview"]',
+    );
+    if (defaultBtn) {
+      tabButtons.forEach((btn) => btn.classList.remove("active"));
+      defaultBtn.classList.add("active");
+    }
   }
 
   win.classList.add("opening");
@@ -127,16 +112,15 @@ window.openWindow = function (id) {
 window.openModal = openWindow;
 
 window.closeWindow = function (id) {
+  const fullscreenWin = document.getElementById(id);
+  if (fullscreenWin?.classList.contains("is-fullscreen")) {
+    toggleWindowFullscreen(id);
+    return;
+  }
+
   const win = document.getElementById(id);
   const overlay = document.getElementById("overlay");
   if (!win) return;
-
-  if (isMobileLayout()) {
-    win.style.display = "none";
-    overlay.classList.remove("active");
-    projectsTabs.style.display = "none";
-    return;
-  }
 
   const scroll = win.querySelector(".window-scroll");
   scrollState[id] = scroll ? scroll.scrollTop : 0;
@@ -150,10 +134,6 @@ window.closeWindow = function (id) {
   setTimeout(() => {
     win.style.display = "none";
     win.classList.remove("closing");
-
-    if (id === "projects") {
-      projectsTabs.style.display = "none";
-    }
 
     const anyOpen = [...document.querySelectorAll(".window")].some(
       (w) => w.style.display === "block",
@@ -417,12 +397,11 @@ function toggleTheme() {
 ===================================== */
 
 document.querySelectorAll(".window").forEach((win) => {
-  if (!isMobileLayout()) {
-    initDragging(win);
+  initDragging(win);
 
-    if (["projects", "designs", "misc"].includes(win.id)) {
-      initResizing(win);
-    }
+  // Only allow resizing on specific windows
+  if (["projects", "designs", "misc"].includes(win.id)) {
+    initResizing(win);
   }
 });
 
