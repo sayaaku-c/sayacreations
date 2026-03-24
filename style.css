@@ -3678,10 +3678,14 @@ body.dark .bottom-wave-fog::after {
   }
 
   .hero {
-    height: auto !important;
-    min-height: 0 !important;
-    padding: 72px 14px 18px !important;
-    display: block !important;
+    min-height: 100vh !important;
+    height: 100vh !important;
+    padding: 72px 14px 22px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
   }
 
   .background-text {
@@ -3706,10 +3710,11 @@ body.dark .bottom-wave-fog::after {
   }
 
   .hero-float-bottom {
-    position: static !important;
-    transform: none !important;
-    margin-top: 14px !important;
-    width: 100% !important;
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 18px !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 32px) !important;
     text-align: center !important;
   }
 
@@ -3722,6 +3727,7 @@ body.dark .bottom-wave-fog::after {
     padding: 58px 18px 22px !important;
     border-radius: 10px !important;
     overflow: visible !important;
+    margin: 0 auto !important;
   }
 
   .main-window-bar {
@@ -3756,27 +3762,26 @@ body.dark .bottom-wave-fog::after {
   .nav-grid {
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
+    align-items: stretch !important;
     justify-content: flex-start !important;
-    gap: 18px !important;
+    gap: 14px !important;
     width: 100% !important;
-    padding-top: 8px !important;
+    padding-top: 0 !important;
     margin: 0 !important;
   }
 
   .nav-grid button {
     width: 100% !important;
-    max-width: 220px !important;
     flex-direction: row !important;
     justify-content: flex-start !important;
     align-items: center !important;
     gap: 14px !important;
-    padding: 8px 0 !important;
+    padding: 6px 0 !important;
   }
 
   .nav-grid img {
-    width: 70px !important;
-    height: 48px !important;
+    width: 64px !important;
+    height: 44px !important;
     flex-shrink: 0 !important;
   }
 
@@ -3786,20 +3791,21 @@ body.dark .bottom-wave-fog::after {
   }
 
   .window {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    transform: none !important;
-    width: calc(100% - 24px) !important;
-    max-width: none !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
     min-width: 0 !important;
-    height: auto !important;
     min-height: 0 !important;
-    max-height: none !important;
-    margin: 0 12px 16px !important;
-    overflow: hidden !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    transform: none !important;
     box-sizing: border-box !important;
+    overflow: hidden !important;
+    z-index: 9999 !important;
+    display: none;
   }
 
   #about,
@@ -3807,12 +3813,12 @@ body.dark .bottom-wave-fog::after {
   #designs,
   #misc,
   #contact {
-    width: calc(100% - 24px) !important;
-    max-width: none !important;
+    width: 100vw !important;
+    height: 100vh !important;
     min-width: 0 !important;
-    height: auto !important;
     min-height: 0 !important;
-    max-height: none !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
   }
 
   .window-bar {
@@ -3825,9 +3831,15 @@ body.dark .bottom-wave-fog::after {
     font-size: 0.68rem !important;
   }
 
-  .window-close,
   .window-fullscreen {
     display: none !important;
+  }
+
+  .window-close {
+    display: block !important;
+    right: 14px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
   }
 
   .window-scroll,
@@ -3835,15 +3847,14 @@ body.dark .bottom-wave-fog::after {
   #designs .window-scroll,
   #misc .window-scroll,
   #contact .contact-scroll {
-    position: relative !important;
-    top: 0 !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
+    position: absolute !important;
+    top: 44px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
     max-height: none !important;
-    overflow: visible !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
   }
 
   .projects-grid {
@@ -3889,31 +3900,49 @@ body.dark .bottom-wave-fog::after {
   }
 
   .about-intro {
-    position: relative !important;
-    top: auto !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 5 !important;
     min-height: 0 !important;
-    padding: 20px 16px !important;
+    padding: 20px 16px 18px 16px !important;
   }
 
   .about-bottom {
     flex-direction: column !important;
-    gap: 24px !important;
+    gap: 22px !important;
     height: auto !important;
     overflow: visible !important;
-    padding: 18px 16px 24px !important;
+    padding: 18px 16px 28px !important;
   }
 
   .about-bio-scroll {
     max-height: none !important;
-    overflow: visible !important;
+    overflow-y: visible !important;
     padding-right: 0 !important;
-    padding-bottom: 0 !important;
+    padding-bottom: 24px !important;
     margin-right: 0 !important;
   }
 
-  .about-sticky,
+  .about-meta {
+    gap: 18px !important;
+  }
+
+  .about-sticky {
+    display: block !important;
+    width: 180px !important;
+    min-width: 180px !important;
+    max-width: 180px !important;
+    left: 12px !important;
+    top: 72px !important;
+  }
+
   .about-polaroid-secret {
-    display: none !important;
+    display: block !important;
+    width: 150px !important;
+    min-width: 150px !important;
+    max-width: 150px !important;
+    left: 12px !important;
+    top: 92px !important;
   }
 
   #misc .window-scroll {

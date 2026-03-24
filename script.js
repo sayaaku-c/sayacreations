@@ -68,17 +68,21 @@ window.openWindow = function (id) {
   if (!win) return;
 
   if (isMobileLayout()) {
+    document.querySelectorAll(".window").forEach((w) => {
+      w.style.display = "none";
+    });
+
     win.style.display = "block";
     win.style.left = "";
     win.style.top = "";
     win.style.zIndex = "";
-    overlay.classList.remove("active");
+    overlay.classList.add("active");
 
     if (id === "projects") {
       projectsTabs.style.display = "none";
     }
 
-    win.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
     return;
   }
 
@@ -123,15 +127,16 @@ window.openWindow = function (id) {
 window.openModal = openWindow;
 
 window.closeWindow = function (id) {
-  const fullscreenWin = document.getElementById(id);
-  if (fullscreenWin?.classList.contains("is-fullscreen")) {
-    toggleWindowFullscreen(id);
-    return;
-  }
-
   const win = document.getElementById(id);
   const overlay = document.getElementById("overlay");
   if (!win) return;
+
+  if (isMobileLayout()) {
+    win.style.display = "none";
+    overlay.classList.remove("active");
+    projectsTabs.style.display = "none";
+    return;
+  }
 
   const scroll = win.querySelector(".window-scroll");
   scrollState[id] = scroll ? scroll.scrollTop : 0;
@@ -145,6 +150,10 @@ window.closeWindow = function (id) {
   setTimeout(() => {
     win.style.display = "none";
     win.classList.remove("closing");
+
+    if (id === "projects") {
+      projectsTabs.style.display = "none";
+    }
 
     const anyOpen = [...document.querySelectorAll(".window")].some(
       (w) => w.style.display === "block",
