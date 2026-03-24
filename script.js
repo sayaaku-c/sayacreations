@@ -1,4 +1,3 @@
-console.log("JS LOADED");
 /* =====================================
    GLOBAL SETTINGS
 ===================================== */
@@ -412,13 +411,13 @@ document.querySelectorAll(".window").forEach((win) => {
 
 const projectData = {
   project1: {
-    images: ["images/Test-06.webp"],
-    processImages: ["images/Test-06.webp"],
+    images: ["images/talabarteriataly-visual.webp"],
+    processImages: ["images/talabarteriataly-visualprocess.webp"],
   },
 
   project2: {
-    images: ["images/Test-05.webp"],
-    processImages: ["images/Test-05.webp"],
+    images: ["images/elforastero-visual.webp"],
+    processImages: ["images/elforastero-visualprocess.webp"],
   },
 };
 

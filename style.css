@@ -1407,7 +1407,7 @@ body.dragging {
   height: 640px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible !important;
   padding-top: 10px;
 }
 
@@ -2518,7 +2518,7 @@ body.dark #designs .window-bar {
 
 #designs .design-text h3 {
   margin: 0 0 14px;
-  font-size: 1.04rem;
+  font-size: 1.6rem;
   letter-spacing: 0.02em;
   color: rgba(12, 12, 12, 0.96);
 }
