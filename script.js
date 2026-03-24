@@ -8,6 +8,7 @@ let highestZ = 2000;
 const windowState = {};
 const scrollState = {};
 const fullscreenState = {};
+const isMobileLayout = () => window.innerWidth <= 768;
 let activeFullscreenWindow = null;
 
 let activeDrag = null;
@@ -62,11 +63,24 @@ function bringToFront(win) {
 }
 
 window.openWindow = function (id) {
-  if (activeFullscreenWindow && id !== activeFullscreenWindow) return;
-
   const win = document.getElementById(id);
   const overlay = document.getElementById("overlay");
   if (!win) return;
+
+  if (isMobileLayout()) {
+    win.style.display = "block";
+    win.style.left = "";
+    win.style.top = "";
+    win.style.zIndex = "";
+    overlay.classList.remove("active");
+
+    if (id === "projects") {
+      projectsTabs.style.display = "none";
+    }
+
+    win.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
 
   const alreadyOpen = win.style.display === "block";
 
@@ -93,16 +107,13 @@ window.openWindow = function (id) {
 
   bringToFront(win);
 
-  if (id === "projects" && !projectsWindow.hasAttribute("data-active-tab")) {
-    projectsWindow.setAttribute("data-active-tab", "overview");
-
-    const defaultBtn = document.querySelector(
-      '#projects .bar-tab[data-tab="overview"]',
-    );
-    if (defaultBtn) {
-      tabButtons.forEach((btn) => btn.classList.remove("active"));
-      defaultBtn.classList.add("active");
+  if (id === "projects") {
+    if (!projectsWindow.hasAttribute("data-active-tab")) {
+      projectsWindow.setAttribute("data-active-tab", "overview");
     }
+
+    positionProjectTabs();
+    projectsTabs.style.display = "flex";
   }
 
   win.classList.add("opening");
@@ -397,11 +408,12 @@ function toggleTheme() {
 ===================================== */
 
 document.querySelectorAll(".window").forEach((win) => {
-  initDragging(win);
+  if (!isMobileLayout()) {
+    initDragging(win);
 
-  // Only allow resizing on specific windows
-  if (["projects", "designs", "misc"].includes(win.id)) {
-    initResizing(win);
+    if (["projects", "designs", "misc"].includes(win.id)) {
+      initResizing(win);
+    }
   }
 });
 
