@@ -1,0 +1,176 @@
+@media (max-width: 900px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100vh;
+  }
+
+  .theme-toggle {
+    top: 14px;
+    right: 14px;
+    z-index: 5000;
+  }
+
+  .hero {
+    min-height: 100vh;
+    padding: 88px 14px 24px;
+    align-items: flex-start;
+  }
+
+  .hero-window {
+    width: 100%;
+    max-width: 100%;
+    min-height: 320px;
+    height: auto;
+    padding: 58px 18px 22px;
+    border-radius: 12px;
+  }
+
+  .main-window-bar {
+    height: 44px;
+    padding: 0 16px;
+  }
+
+  .nav-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 100%;
+    padding-top: 18px;
+  }
+
+  .nav-grid button {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 14px;
+    padding: 10px 4px;
+  }
+
+  .nav-grid img {
+    width: 72px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  .nav-grid span {
+    font-size: 0.8rem;
+    text-align: left;
+  }
+
+  .hero-paragraph {
+    margin-top: 18px;
+    font-size: 0.95rem;
+  }
+
+  .hero-float-top-left {
+    top: 12px;
+    left: 14px;
+    font-size: 0.68rem;
+  }
+
+  .hero-float-top-sub {
+    font-size: 0.52rem;
+  }
+
+  .hero-float-bottom {
+    left: 50%;
+    bottom: 10px;
+    width: calc(100% - 28px);
+    transform: translateX(-50%);
+  }
+
+  .background-text {
+    top: 48vh;
+    font-size: clamp(72px, 24vw, 150px);
+    white-space: nowrap;
+  }
+
+  .window {
+    position: fixed;
+    inset: 12px;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    max-height: none !important;
+    border-radius: 12px;
+    padding: 56px 14px 14px;
+  }
+
+  .window-bar {
+    height: 44px;
+    cursor: default;
+    padding: 0 52px 0 14px;
+  }
+
+  .window-title {
+    max-width: calc(100% - 44px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .window-scroll {
+    top: 44px;
+    max-height: calc(100dvh - 24px - 44px - 14px);
+  }
+
+  .window-fullscreen,
+  .resize-handle,
+  .misc-window-note {
+    display: none !important;
+  }
+
+  #about,
+  #projects,
+  #designs,
+  #misc,
+  #contact {
+    inset: 12px;
+    width: auto !important;
+    height: calc(100dvh - 24px) !important;
+    min-width: 0 !important;
+  }
+
+  #projects {
+    padding: 0 !important;
+  }
+
+  #projects .window-scroll {
+    top: 44px;
+  }
+
+  #projects .project-bar-tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-left: 8px;
+  }
+
+  #projects .project-bar-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  #projects .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-wrapper {
+    padding-top: 44px;
+  }
+
+  .about-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .about-sticky,
+  .about-polaroid-secret {
+    display: none;
+  }
+}
