@@ -10,6 +10,7 @@
 
     <!-- STYLES -->
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mobile.css" media="(max-width: 900px)" />
   </head>
 
    <!-- =============================
@@ -194,11 +195,11 @@
       </div>
 
       <!-- Sticky Note -->
-      <img class="about-sticky" src="images/sticky-note.webp" />
+      <img class="about-sticky" src="images/01-About/sticky-note.webp" />
       <div class="about-polaroid-secret">
         <span class="tape tape-left"></span>
         <span class="tape tape-right"></span>
-        <img src="images/Self-Polaroid.webp" alt="Hidden portrait" />
+        <img src="images/01-About/Self-Polaroid.webp" alt="Hidden portrait" />
       </div>
     </div>
 
@@ -235,7 +236,7 @@
     <div class="tab-content active" data-tab="overview">
       <div class="projects-grid">
         <div class="project-card" onclick="openProject('project1', this)">
-          <img src="images/talabarteriataly-overview.webp" loading="lazy" />
+          <img src="images/02-Projects/p1/talabarteriataly-overview.webp" loading="lazy" />
           <div class="project-info">
             <h3>TALABARTERÍA TALY</h3>
             <p>
@@ -245,7 +246,7 @@
         </div>
 
         <div class="project-card" onclick="openProject('project2', this)">
-          <img src="images/elforastero-overview.webp" loading="lazy" />
+          <img src="images/02-Projects/p2/elforastero-overview.webp" loading="lazy" />
           <div class="project-info">
             <h3>EL FORASTERO JIBARITO</h3>
             <p>
@@ -292,19 +293,38 @@
 
       <!-- PROJECT 1 -->
       <div class="design-item">
+        <div class="design-images one-image">
+          <img
+            src="images/03-Designs/01-boroque.webp"
+            loading="lazy"
+            alt="Single poster design"
+          />
+        </div>
+
+        <div class="design-text">
+          <h3>Chiaroscuro Food Photography</h3>
+          <p>
+            A single-poster concept focused on chiaroscuro, a strong contrasts between light and shadow
+          </p>
+          <span class="design-meta">2026 · Poster Design</span>
+        </div>
+      </div>
+
+      <!-- PROJECT 2 -->
+      <div class="design-item">
         <div class="design-images three-images">
           <img
-            src="images/Gallery/Movie-Recreation-Posters/MP-WallE.jpg"
+            src="images/03-Designs/02-entropy-1.webp"
             loading="lazy"
             alt="Editorial poster 1"
           />
           <img
-            src="images/Gallery/Movie-Recreation-Posters/MP-KingK.jpg"
+            src="images/03-Designs/02-entropy-2.webp"
             loading="lazy"
             alt="Editorial poster 2"
           />
           <img
-            src="images/Gallery/Movie-Recreation-Posters/MP-Ali.jpg"
+            src="images/03-Designs/02-entropy-3.webp"
             loading="lazy"
             alt="Editorial poster 3"
           />
@@ -313,23 +333,43 @@
         <div class="design-text">
           <h3>Editorial Poster Series</h3>
           <p>
-            A typographic poster exploration focused on layout rhythm and visual
-            hierarchy using bold condensed type and layered imagery.
+            A set of typographic and color focused magazine covers that focus on the theme of entropy, 
+            the measure of randomness, decay, and uncertainty.
+          </p>
+          <span class="design-meta">2025 · Magazine Cover Design</span>
+        </div>
+      </div>
+      
+      <!-- PROJECT 3 -->
+      <div class="design-item">
+        <div class="design-images one-image">
+          <img
+            src="images/03-Designs/03-concilience.webp"
+            loading="lazy"
+            alt="Single poster design"
+          />
+        </div>
+
+        <div class="design-text">
+          <h3>Concilience Study</h3>
+          <p>
+            A single-poster design and study over the correlation of one subject and another outside its field.
+             Visual provided only
           </p>
           <span class="design-meta">2025 · Poster Design</span>
         </div>
       </div>
 
-      <!-- PROJECT 2 -->
+      <!-- PROJECT 4 -->
       <div class="design-item">
         <div class="design-images two-images">
           <img
-            src="images/Gallery/Movie-Recreation-Posters/MP-Ali.jpg"
+            src="images/03-Designs/04-Fashion-1.webp"
             loading="lazy"
             alt="Flyer design 1"
           />
           <img
-            src="images/Gallery/Movie-Recreation-Posters/MP-Ali.jpg"
+            src="images/03-Designs/04-Fashion-2.webp"
             loading="lazy"
             alt="Flyer design 2"
           />
@@ -338,36 +378,167 @@
         <div class="design-text">
           <h3>Flyer System</h3>
           <p>
-            Promotional flyers built around an 11x14 grid system. Designed for
-            nightlife events and digital distribution.
+            A set of poster designs that focuses on fashion and modeling for the camera. 
           </p>
-          <span class="design-meta">2024 · Graphic Design</span>
+          <span class="design-meta">2025 · Graphic Design</span>
         </div>
       </div>
 
-      <!-- PROJECT 3 -->
+      <!-- PROJECT 5 -->
       <div class="design-item">
         <div class="design-images one-image">
           <img
-            src="images/Gallery/Movie-Recreation-Posters/MP-Halloween.jpg"
+            src="images/03-Designs/05-architecture.webp"
             loading="lazy"
             alt="Single poster design"
           />
         </div>
 
         <div class="design-text">
-          <h3>Halloween Poster</h3>
+          <h3>Local Architecture</h3>
           <p>
-            A single-poster concept focused on mood, contrast, and restrained
-            typography with cinematic composition.
+            A single-magazine concept focused on mood, lighting and most importantly capturing
+            the local architecture.
           </p>
-          <span class="design-meta">2024 · Poster Design</span>
+          <span class="design-meta">2025 · Magazine Design</span>
+        </div>
+      </div>
+
+      <!-- PROJECT 6 -->
+      <div class="design-item">
+        <div class="design-images two-images">
+          <img
+            src="images/03-Designs/06-Food-1.webp"
+            loading="lazy"
+            alt="Flyer design 1"
+          />
+          <img
+            src="images/03-Designs/06-Food-2.webp"
+            loading="lazy"
+            alt="Flyer design 2"
+          />
+        </div>
+
+        <div class="design-text">
+          <h3>Designing with Food</h3>
+          <p>
+            Simple set of magazine covers that use personally prepared food and styled to fit
+            what would typically be found on a magazine cover, although with some creative liberties.
+          </p>
+          <span class="design-meta">2025 · Magazine Cover</span>
+        </div>
+      </div>
+
+      <!-- PROJECT 7 -->
+      <div class="design-item">
+        <div class="design-images two-images">
+          <img
+            src="images/03-Designs/07-Light-1.webp"
+            loading="lazy"
+            alt="Flyer design 1"
+          />
+          <img
+            src="images/03-Designs/07-Light-2.webp"
+            loading="lazy"
+            alt="Flyer design 2"
+          />
+        </div>
+
+        <div class="design-text">
+          <h3>Designing with Light</h3>
+          <p>
+            A set of designs that used experimental photoshoots involving leaving the shutter on to
+            capture light in a shot.
+          </p>
+          <span class="design-meta">2024 · Graphic Design</span>
+        </div>
+      </div>
+
+      <!-- PROJECT 8 -->
+      <div class="design-item">
+        <div class="design-images three-images">
+          <img
+            src="images/03-Designs/08-Self-1.webp"
+            loading="lazy"
+            alt="Editorial poster 1"
+          />
+          <img
+            src="images/03-Designs/08-Self-2.webp"
+            loading="lazy"
+            alt="Editorial poster 2"
+          />
+          <img
+            src="images/03-Designs/08-Self-3.webp"
+            loading="lazy"
+            alt="Editorial poster 3"
+          />
+        </div>
+
+        <div class="design-text">
+          <h3>Self Perception</h3>
+          <p>
+            A trio of poster and magazine designs that try to convey the idea of the inner self, 
+            and the perception one may draw.
+          </p>
+          <span class="design-meta">2024 · Poster/Magazine Design</span>
+        </div>
+      </div>
+
+      <!-- PROJECT 9 -->
+      <div class="design-item">
+        <div class="design-images two-images">
+          <img
+            src="images/03-Designs/09-Infographic-1.webp"
+            loading="lazy"
+            alt="Flyer design 1"
+          />
+          <img
+            src="images/03-Designs/09-Infographic-2.webp"
+            loading="lazy"
+            alt="Flyer design 2"
+          />
+        </div>
+
+        <div class="design-text">
+          <h3>Infographic Posters</h3>
+          <p>
+            Educational Infographics that aim to educate and be pssible used in an educational setting.
+          </p>
+          <span class="design-meta">2023 · Graphic Design</span>
+        </div>
+      </div>
+
+      <!-- PROJECT 10 -->
+      <div class="design-item">
+        <div class="design-images three-images">
+          <img
+            src="images/03-Designs/10-MovieP-1.webp"
+            loading="lazy"
+            alt="Editorial poster 1"
+          />
+          <img
+            src="images/03-Designs/10-MovieP-2.webp"
+            loading="lazy"
+            alt="Editorial poster 2"
+          />
+          <img
+            src="images/03-Designs/10-MovieP-3.webp"
+            loading="lazy"
+            alt="Editorial poster 3"
+          />
+        </div>
+
+        <div class="design-text">
+          <h3>Redesigned Movie Posters</h3>
+          <p>
+            A reimagined set of movie posters made to help learn about vectors, and designing with them.
+          </p>
+          <span class="design-meta">2023 · Poster Design</span>
         </div>
       </div>
 
     </div>
   </div>
-</div>
 </div>
 
 <!-- =============================
@@ -387,19 +558,19 @@
     <div class="misc-scatter">
       <img
         class="draggable-photo"
-        src="images/misc-ignite.webp"
+        src="images/04-Misc/misc-ignite.webp"
         loading="lazy"
         data-caption="Learning about vectors while making some cool skull designs"
       />
       <img
         class="draggable-photo"
-        src="images/misc-chicken.webp"
+        src="images/04-Misc/misc-chicken.webp"
         loading="lazy"
         data-caption="Edgy design I drew and wanted to vectorize"
       />
       <img
         class="draggable-photo"
-        src="images/misc-onlooker.webp"
+        src="images/04-Misc/misc-onlooker.webp"
         loading="lazy"
         data-caption="small drawing made during my off-time in class"
       />
@@ -459,5 +630,6 @@
 
     <!-- SCRIPTS -->
     <script src="script.js"></script>
+    <script src="mobile.js"></script>
   </body>
 </html>

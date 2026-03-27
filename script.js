@@ -411,13 +411,15 @@ document.querySelectorAll(".window").forEach((win) => {
 
 const projectData = {
   project1: {
-    images: ["images/talabarteriataly-visual.webp"],
-    processImages: ["images/talabarteriataly-visualprocess.webp"],
+    images: ["images/02-Projects/p1/talabarteriataly-visual.webp"],
+    processImages: [
+      "images/02-Projects/p1/talabarteriataly-visualprocess.webp",
+    ],
   },
 
   project2: {
-    images: ["images/elforastero-visual.webp"],
-    processImages: ["images/elforastero-visualprocess.webp"],
+    images: ["images/02-Projects/p2/elforastero-visual.webp"],
+    processImages: ["images/02-Projects/p2/elforastero-visualprocess.webp"],
   },
 };
 
