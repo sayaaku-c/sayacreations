@@ -27,6 +27,127 @@ function triggerEdgeShake(win) {
 }
 
 /* =====================================
+   INTRO SYSTEM
+===================================== */
+
+function runIntro() {
+  document.body.classList.remove("intro-active");
+  document.body.classList.add("intro-show");
+}
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    runIntro();
+  }, 650);
+});
+
+/* =====================================
+   SOUND SYSTEM
+===================================== */
+
+const sounds = {
+  tap: new Howl({
+    src: ["sounds/tap.mp3"],
+    volume: 0.4,
+  }),
+
+  open: new Howl({
+    src: ["sounds/open.mp3"],
+    volume: 0.4,
+  }),
+
+  close: new Howl({
+    src: ["sounds/close.mp3"],
+    volume: 0.35,
+  }),
+
+  light: new Howl({
+    src: ["sounds/light.mp3"],
+    volume: 0.45,
+  }),
+
+  dark: new Howl({
+    src: ["sounds/dark.mp3"],
+    volume: 0.45,
+  }),
+
+  sticky: new Howl({
+    src: ["sounds/sticky.mp3"],
+    volume: 0.45,
+  }),
+
+  copy: new Howl({
+    src: ["sounds/copy.mp3"],
+    volume: 0.5,
+  }),
+
+  fullscreenOn: new Howl({
+    src: ["sounds/fullscreen-on.mp3"],
+    volume: 0.4,
+  }),
+
+  fullscreenOff: new Howl({
+    src: ["sounds/fullscreen-off.mp3"],
+    volume: 0.45,
+  }),
+
+  intro: new Howl({
+    src: ["sounds/intro.mp3"],
+    volume: 0.35,
+  }),
+};
+
+let soundUnlocked = false;
+
+function unlockSound() {
+  if (soundUnlocked) return;
+
+  Howler.ctx.resume();
+  soundUnlocked = true;
+}
+
+let introPlayed = false;
+
+function playIntroSound() {
+  if (introPlayed) return;
+  introPlayed = true;
+
+  sounds.intro.volume(0);
+  sounds.intro.play();
+
+  setTimeout(() => {
+    sounds.intro.volume(0.35);
+  }, 40);
+}
+
+["click", "mousemove", "touchstart"].forEach((event) => {
+  document.addEventListener(
+    event,
+    () => {
+      unlockSound();
+      playIntroSound();
+    },
+    { once: true },
+  );
+});
+
+document.querySelectorAll(".bar-tab, .theme-toggle").forEach((el) => {
+  el.addEventListener("click", () => {
+    playSound(sounds.tap);
+  });
+});
+
+function playSound(sound) {
+  if (!soundUnlocked) return;
+
+  if (sound.playing()) {
+    sound.stop();
+  }
+
+  sound.play();
+}
+
+/* =====================================
    SPACE KEY STATE
 ===================================== */
 
@@ -73,6 +194,8 @@ window.openWindow = function (id) {
   overlay.classList.add("active");
   win.style.display = "block";
 
+  playSound(sounds.open);
+
   if (!alreadyOpen) {
     const width = win.offsetWidth;
     const height = win.offsetHeight;
@@ -105,8 +228,21 @@ window.openWindow = function (id) {
     }
   }
 
-  win.classList.add("opening");
-  requestAnimationFrame(() => win.classList.remove("opening"));
+  if (window.innerWidth <= 900) {
+    win.classList.remove("opening");
+    void win.offsetWidth;
+    win.classList.add("opening");
+
+    const handleOpenAnimationEnd = () => {
+      win.classList.remove("opening");
+      win.removeEventListener("animationend", handleOpenAnimationEnd);
+    };
+
+    win.addEventListener("animationend", handleOpenAnimationEnd);
+  } else {
+    win.classList.add("opening");
+    requestAnimationFrame(() => win.classList.remove("opening"));
+  }
 };
 
 window.openModal = openWindow;
@@ -117,6 +253,8 @@ window.closeWindow = function (id) {
     toggleWindowFullscreen(id);
     return;
   }
+
+  playSound(sounds.close);
 
   const win = document.getElementById(id);
   const overlay = document.getElementById("overlay");
@@ -140,7 +278,7 @@ window.closeWindow = function (id) {
     );
 
     if (!anyOpen) overlay.classList.remove("active");
-  }, 200);
+  }, 280);
 };
 
 /* =====================================
@@ -348,6 +486,8 @@ window.toggleWindowFullscreen = function (id) {
   const isFullscreen = win.classList.contains("is-fullscreen");
 
   if (!isFullscreen) {
+    playSound(sounds.fullscreenOn);
+
     fullscreenState[id] = {
       left: win.style.left,
       top: win.style.top,
@@ -360,6 +500,8 @@ window.toggleWindowFullscreen = function (id) {
     win.classList.add("is-fullscreen");
     bringToFront(win);
   } else {
+    playSound(sounds.fullscreenOff);
+
     win.classList.remove("is-fullscreen");
 
     const saved = fullscreenState[id];
@@ -386,10 +528,18 @@ function toggleTheme() {
   const body = document.body;
   const toggle = document.querySelector(".theme-toggle");
 
+  const goingDark = body.classList.contains("light");
+
   body.classList.toggle("dark");
   body.classList.toggle("light");
 
   toggle.textContent = body.classList.contains("dark") ? "Light" : "Dark";
+
+  if (goingDark) {
+    playSound(sounds.dark);
+  } else {
+    playSound(sounds.light);
+  }
 }
 
 /* =====================================
@@ -871,6 +1021,8 @@ aboutSticky?.addEventListener("click", () => {
     clearTimeout(stickyClickTimer);
     stickyClickCount = 0;
 
+    playSound(sounds.sticky);
+
     aboutWindow?.classList.add("sticky-falling");
 
     setTimeout(() => {
@@ -936,6 +1088,8 @@ contactEmail?.addEventListener("click", () => {
   const email = contactEmail.textContent.trim();
 
   navigator.clipboard.writeText(email).then(() => {
+    playSound(sounds.copy);
+
     const original = contactEmail.textContent;
 
     contactEmail.textContent = "Copied!";

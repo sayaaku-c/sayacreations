@@ -1405,7 +1405,6 @@ body.dragging {
 
 #about {
   height: 640px;
-  display: flex;
   flex-direction: column;
   overflow: visible !important;
   padding-top: 10px;
@@ -3670,4 +3669,154 @@ body.dark .bottom-wave-fog::after {
   .bottom-wave-fog::after {
     animation: none;
   }
+}
+
+@media (min-width: 901px) {
+  .about-mobile-layout,
+  .about-mobile-sticky,
+  .about-mobile-header,
+  .about-mobile-tag-groups,
+  .about-mobile-tags,
+  .about-mobile-body,
+  .about-mobile-list,
+  .about-mobile-heading {
+    display: none !important;
+  }
+}
+
+/* =====================================
+   INTRO STATE - SOFT DEPTH REVEAL
+===================================== */
+
+/* The visible UI starts buried in haze, not moving upward */
+body.intro-active .hero-window,
+body.intro-active .hero-float-top-left,
+body.intro-active .hero-float-bottom {
+  opacity: 0;
+  filter: blur(26px);
+  transform: scale(0.992);
+}
+
+body.intro-show .hero-window,
+body.intro-show .hero-float-top-left,
+body.intro-show .hero-float-bottom {
+  opacity: 1;
+  filter: blur(0px);
+  transform: scale(1);
+}
+
+.hero-window,
+.hero-float-top-left,
+.hero-float-bottom {
+  transition:
+    opacity 3.2s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 3.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 3.2s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, filter, transform;
+}
+
+/* background text keeps its original translateX centering */
+body.intro-active .background-text {
+  opacity: 0;
+  filter: blur(26px);
+  transform: translateX(-50%) scale(0.992);
+}
+
+body.intro-show .background-text {
+  filter: blur(0px);
+  transform: translateX(-50%) scale(1);
+}
+
+.background-text {
+  transition:
+    opacity 3.2s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 3.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 3.2s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, filter, transform;
+}
+
+/* Keep the background text extra soft at first */
+body.intro-active .background-text {
+  opacity: 0;
+}
+
+body.light.intro-show .background-text {
+  opacity: 0.065;
+}
+
+body.dark.intro-show .background-text {
+  opacity: 0.34;
+}
+
+/* =====================================
+   FOG VEIL
+===================================== */
+
+.fog-layer {
+  position: fixed;
+  inset: -8%;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 1;
+  filter: blur(0px);
+  transform: scale(1.02);
+  transition:
+    opacity 4.4s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 4.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 4.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, filter, transform;
+}
+
+.fog-layer::before {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(0);
+  transition:
+    opacity 4.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 4.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 4.8s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: blur(26px);
+}
+
+/* Light mode fog veil */
+body.light.intro-active .fog-layer::before {
+  opacity: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(244, 247, 251, 0.98) 0%,
+    rgba(244, 247, 251, 0.94) 18%,
+    rgba(244, 247, 251, 0.82) 38%,
+    rgba(244, 247, 251, 0.58) 60%,
+    rgba(244, 247, 251, 0.28) 80%,
+    rgba(244, 247, 251, 0.06) 94%,
+    rgba(244, 247, 251, 0) 100%
+  );
+}
+
+body.light.intro-show .fog-layer::before {
+  opacity: 0;
+  transform: translateY(-10%);
+}
+
+/* Dark mode fog veil */
+body.dark.intro-active .fog-layer::before {
+  opacity: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(16, 24, 40, 0.98) 0%,
+    rgba(16, 24, 40, 0.95) 18%,
+    rgba(16, 24, 40, 0.84) 38%,
+    rgba(16, 24, 40, 0.58) 60%,
+    rgba(16, 24, 40, 0.26) 80%,
+    rgba(16, 24, 40, 0.06) 94%,
+    rgba(16, 24, 40, 0) 100%
+  );
+}
+
+body.dark.intro-show .fog-layer::before {
+  opacity: 0;
+  transform: translateY(-10%);
 }

@@ -17,7 +17,7 @@
        GLOBAL UI
   ============================== -->
 
- <body class="light">
+ <body class="light intro-active">
   <!-- Theme Toggle -->
   <button class="theme-toggle" onclick="toggleTheme()">Dark</button>
 
@@ -106,102 +106,178 @@
    ABOUT WINDOW
 ============================= -->
 
-    <div class="window draggable" id="about">
-      <div class="window-bar">
-        <span class="window-title">About</span>
-        <button class="window-close" onclick="closeWindow('about')"></button>
-      </div>
+<div class="window draggable" id="about">
+  <div class="window-bar">
+    <span class="window-title">About</span>
+    <button class="window-close" onclick="closeWindow('about')"></button>
+  </div>
 
-      <div class="about-wrapper">
-        <!-- TOP SECTION (Sticky) -->
-        <div class="about-intro">
-          <h2 class="about-name">Miguel Corral</h2>
-          <p class="about-role">Designer & Illustrator</p>
-          <div class="about-subtext">
-            Current Student at Angelina College
-          </div>
-        </div>
-
-        <!-- BOTTOM SECTION -->
-        <div class="about-bottom">
-          <!-- LEFT COLUMN (Scrollable) -->
-          <div class="about-bio about-bio-scroll">
-            <p>
-              Hi, I'm Miguel — a designer and illustrator exploring bold visual 
-              systems across digital, print, and experiential spaces. I enjoy 
-              creating work that is expressive, adaptable, and built to live 
-              across multiple mediums.
-            </p>
-            <ul class="about-list">
-              <li>Creating <span class="text-highlight">visual</span> branding identities</li>
-              <li>Designing <span class="text-highlight">promotional</span> material</li>
-              <li>Designing music graphics</li>
-              <li>Creating <span class="text-highlight">illustration</span> for multiple applications</li>
-            </ul>
-            <p>Interested in working with me? Send an email at: 
-              <span class="text-highlight">123-----------@GMAIL.COM</span>
-            </p>
-            <h3 class="about-heading">EDUCATION</h3>
-
-            <p>Associate of Applied Science in Design & Applied Arts – Graphic Arts</p>
-
-            <h3 class="about-heading">OTHER INTERESTS</h3>
-
-            <ul class="about-list">
-              <li>Arts and Crafts</li>
-              <li>Carpentry</li>
-              <li>Gardening</li>
-              <li>Electronics Tinkering</li>
-              <li>Cooking</li>
-              <li>Music/Video Games</li>
-            </ul>
-
-            <h3 class="about-heading">LANGUEGE PROFICIENCY</h3>
-
-            <div class="about-text">
-              <p>I have native fluency in both <span class="text-highlight">English</span>
-                 and <span class="text-highlight">Spanish</span>
-                </p>
-              <div class="about-indent">
-              <p>Can also understand to some degree other variations of the spanish language</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- RIGHT COLUMN (Static) -->
-          <div class="about-meta">
-            <div class="meta-block">
-              <span class="meta-title">Skills</span>
-              <ul>
-                <li>Layout</li>
-                <li>Branding</li>
-                <li>Typography</li>
-                <li>Illustration</li>
-                <li>Photography</li>
-              </ul>
-            </div>
-
-            <div class="meta-block">
-              <span class="meta-title">Tools</span>
-              <ul>
-                <li>Clip Studio paint</li>
-                <li>Adobe Suite</li>
-                <li>Blender</li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- Sticky Note -->
-      <img class="about-sticky" src="images/01-About/sticky-note.webp" />
-      <div class="about-polaroid-secret">
-        <span class="tape tape-left"></span>
-        <span class="tape tape-right"></span>
-        <img src="images/01-About/Self-Polaroid.webp" alt="Hidden portrait" />
+  <!-- desktop layout -->
+  <div class="about-wrapper about-desktop-layout">
+    <div class="about-intro">
+      <h2 class="about-name">Miguel Corral</h2>
+      <p class="about-role">Designer & Illustrator</p>
+      <div class="about-subtext">
+        Current Student at Angelina College
       </div>
     </div>
+
+    <div class="about-bottom">
+      <div class="about-bio about-bio-scroll">
+        <p>
+          Hi, I'm Miguel — a designer and illustrator exploring bold visual
+          systems across digital, print, and experiential spaces. I enjoy
+          creating work that is expressive, adaptable, and built to live
+          across multiple mediums.
+        </p>
+        <ul class="about-list">
+          <li>Creating <span class="text-highlight">visual</span> branding identities</li>
+          <li>Designing <span class="text-highlight">promotional</span> material</li>
+          <li>Designing music graphics</li>
+          <li>Creating <span class="text-highlight">illustration</span> for multiple applications</li>
+        </ul>
+        <p>
+          Interested in working with me? Send an email at:
+          <span class="text-highlight">123-----------@GMAIL.COM</span>
+        </p>
+
+        <h3 class="about-heading">EDUCATION</h3>
+        <p>Associate of Applied Science in Design & Applied Arts – Graphic Arts</p>
+
+        <h3 class="about-heading">OTHER INTERESTS</h3>
+        <ul class="about-list">
+          <li>Arts and Crafts</li>
+          <li>Carpentry</li>
+          <li>Gardening</li>
+          <li>Electronics Tinkering</li>
+          <li>Cooking</li>
+          <li>Music/Video Games</li>
+        </ul>
+
+        <h3 class="about-heading">LANGUEGE PROFICIENCY</h3>
+        <div class="about-text">
+          <p>
+            I have native fluency in both
+            <span class="text-highlight">English</span>
+            and
+            <span class="text-highlight">Spanish</span>
+          </p>
+          <div class="about-indent">
+            <p>Can also understand to some degree other variations of the spanish language</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-meta">
+        <div class="meta-block">
+          <span class="meta-title">Skills</span>
+          <ul>
+            <li>Layout</li>
+            <li>Branding</li>
+            <li>Typography</li>
+            <li>Illustration</li>
+            <li>Photography</li>
+          </ul>
+        </div>
+
+        <div class="meta-block">
+          <span class="meta-title">Tools</span>
+          <ul>
+            <li>Clip Studio paint</li>
+            <li>Adobe Suite</li>
+            <li>Blender</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img class="about-sticky about-desktop-layout" src="images/01-About/sticky-note.webp" />
+  <div class="about-polaroid-secret about-desktop-layout">
+    <span class="tape tape-left"></span>
+    <span class="tape tape-right"></span>
+    <img src="images/01-About/Self-Polaroid.webp" alt="Hidden portrait" />
+  </div>
+
+  <!-- mobile layout -->
+  <div class="about-mobile-layout">
+    <div class="about-mobile-scroll">
+      <img class="about-mobile-sticky" src="images/01-About/sticky-note.webp" alt="Sticky note" />
+
+      <div class="about-mobile-header">
+        <h2 class="about-mobile-name">Miguel Corral</h2>
+        <p class="about-mobile-role">Designer & Illustrator</p>
+        <div class="about-mobile-subtext">Current Student at Angelina College</div>
+      </div>
+
+      <div class="about-mobile-tag-groups">
+  <div class="about-mobile-tag-group">
+    <h3 class="about-mobile-chip-heading">Skills</h3>
+    <div class="about-mobile-tags">
+      <span class="about-tag">Layout</span>
+      <span class="about-tag">Branding</span>
+      <span class="about-tag">Typography</span>
+      <span class="about-tag">Illustration</span>
+      <span class="about-tag">Photography</span>
+    </div>
+  </div>
+
+  <div class="about-mobile-tag-group">
+    <h3 class="about-mobile-chip-heading">Tools</h3>
+    <div class="about-mobile-tags">
+      <span class="about-tag">Clip Studio</span>
+      <span class="about-tag">Adobe Suite</span>
+      <span class="about-tag">Blender</span>
+      <span class="about-tag">Bilingual</span>
+    </div>
+  </div>
+</div>
+
+      <div class="about-mobile-body">
+        <p>
+          Hi, I'm Miguel — a designer and illustrator exploring bold visual
+          systems across digital, print, and experiential spaces. I enjoy
+          creating work that is expressive, adaptable, and built to live
+          across multiple mediums.
+        </p>
+
+        <ul class="about-mobile-list">
+          <li>Creating <span class="text-highlight">visual</span> branding identities</li>
+          <li>Designing <span class="text-highlight">promotional</span> material</li>
+          <li>Designing music graphics</li>
+          <li>Creating <span class="text-highlight">illustration</span> for multiple applications</li>
+        </ul>
+
+        <p>
+          Interested in working with me? Send an email at:
+          <span class="text-highlight">123-----------@GMAIL.COM</span>
+        </p>
+
+        <h3 class="about-mobile-heading">Education</h3>
+        <p>Associate of Applied Science in Design & Applied Arts – Graphic Arts</p>
+
+        <h3 class="about-mobile-heading">Other Interests</h3>
+        <ul class="about-mobile-list">
+          <li>Arts and Crafts</li>
+          <li>Carpentry</li>
+          <li>Gardening</li>
+          <li>Electronics Tinkering</li>
+          <li>Cooking</li>
+          <li>Music / Video Games</li>
+        </ul>
+
+        <h3 class="about-mobile-heading">Language Proficiency</h3>
+        <p>
+          I have native fluency in both
+          <span class="text-highlight">English</span>
+          and
+          <span class="text-highlight">Spanish</span>.
+        </p>
+        <p>Can also understand to some degree other variations of the spanish language.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- =============================
    PROJECTS WINDOW
@@ -629,6 +705,7 @@
     <div id="polaroidBackdrop"></div>
 
     <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
     <script src="script.js"></script>
     <script src="mobile.js"></script>
   </body>
