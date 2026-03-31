@@ -132,7 +132,7 @@ function playIntroSound() {
 function updateSoundToggle() {
   const btn = document.querySelector(".sound-toggle");
   if (!btn) return;
-  btn.textContent = `Sound: ${soundEnabled ? "On" : "Off"}`;
+  btn.textContent = soundEnabled ? "Sound On" : "Sound Off";
 }
 
 function toggleSound() {
@@ -150,15 +150,17 @@ updateSoundToggle();
       unlockSound();
       playIntroSound();
     },
-    { once: true },
+    { once: true }
   );
 });
 
-document.querySelectorAll(".bar-tab, .theme-toggle").forEach((el) => {
-  el.addEventListener("click", () => {
-    playSound(sounds.tap);
+document
+  .querySelectorAll(".nav-grid button, .bar-tab, .theme-toggle, .sound-toggle")
+  .forEach((el) => {
+    el.addEventListener("click", () => {
+      playSound(sounds.tap);
+    });
   });
-});
 
 /* =====================================
    SPACE KEY STATE
@@ -853,7 +855,6 @@ let zoomed = false;
 let panX = 0;
 let panY = 0;
 let isPanning = false;
-let isTouchPanning = false;
 let panStartX = 0;
 let panStartY = 0;
 
@@ -866,8 +867,8 @@ function updateViewerTransform() {
     const viewerRect = imageViewer.getBoundingClientRect();
     const imageRect = viewerImage.getBoundingClientRect();
 
-    const baseWidth = imageRect.width / scale;
-    const baseHeight = imageRect.height / scale;
+    const baseWidth = imageRect.width / (zoomed ? 1.8 : 1);
+    const baseHeight = imageRect.height / (zoomed ? 1.8 : 1);
 
     const scaledWidth = baseWidth * scale;
     const scaledHeight = baseHeight * scale;
@@ -885,7 +886,7 @@ function updateViewerTransform() {
     panY = 0;
   }
 
-  viewerImage.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${scale})`;
+  viewerImage.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
 }
 
 function resetViewerState() {
@@ -893,11 +894,10 @@ function resetViewerState() {
   panX = 0;
   panY = 0;
   isPanning = false;
-  isTouchPanning = false;
   updateViewerTransform();
 
   if (viewerImage) {
-    viewerImage.classList.remove("zoomed", "panning");
+    viewerImage.classList.remove("zoomed");
   }
 
   if (viewerZoom) {
@@ -916,12 +916,6 @@ function openImageViewer(src) {
   resetViewerState();
 
   imageViewer.classList.add("active");
-
-  requestAnimationFrame(() => {
-    panX = 0;
-    panY = 0;
-    updateViewerTransform();
-  });
 
   if (viewerHint) {
     viewerHint.classList.add("active");
@@ -947,13 +941,13 @@ viewerZoom?.addEventListener("click", (e) => {
 
   if (zoomed) {
     viewerImage.classList.add("zoomed");
-    viewerZoom.textContent = "Zoom Out";
+    if (viewerZoom) viewerZoom.textContent = "Zoom Out";
     if (viewerHint) viewerHint.textContent = "Drag image to look around";
   } else {
     viewerImage.classList.remove("zoomed");
     panX = 0;
     panY = 0;
-    viewerZoom.textContent = "Zoom";
+    if (viewerZoom) viewerZoom.textContent = "Zoom";
     if (viewerHint) viewerHint.textContent = "Click outside image to close";
   }
 
@@ -996,47 +990,6 @@ document.addEventListener("mouseup", () => {
 
   isPanning = false;
   viewerImage?.classList.remove("panning");
-});
-
-viewerImage?.addEventListener(
-  "touchstart",
-  (e) => {
-    if (!zoomed || e.touches.length !== 1) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    isTouchPanning = true;
-
-    const touch = e.touches[0];
-    panStartX = touch.clientX - panX;
-    panStartY = touch.clientY - panY;
-  },
-  { passive: false },
-);
-
-viewerImage?.addEventListener(
-  "touchmove",
-  (e) => {
-    if (!zoomed || !isTouchPanning || e.touches.length !== 1) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    const touch = e.touches[0];
-    panX = touch.clientX - panStartX;
-    panY = touch.clientY - panStartY;
-    updateViewerTransform();
-  },
-  { passive: false },
-);
-
-viewerImage?.addEventListener("touchend", () => {
-  isTouchPanning = false;
-});
-
-viewerImage?.addEventListener("touchcancel", () => {
-  isTouchPanning = false;
 });
 
 document.addEventListener("keydown", (e) => {
