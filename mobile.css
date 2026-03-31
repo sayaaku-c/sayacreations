@@ -3,13 +3,40 @@
   body {
     width: 100%;
     max-width: 100%;
-    min-height: 100dvh;
+    min-height: 100svh;
     overflow: hidden;
   }
 
   body {
-    min-height: 100dvh;
+    min-height: 100svh;
     position: relative;
+  }
+
+  .hero {
+    min-height: 100svh;
+    height: 100svh;
+    padding: calc(78px + env(safe-area-inset-top)) 16px 64px;
+    box-sizing: border-box;
+    overflow: hidden;
+    align-items: flex-start;
+  }
+
+  .theme-toggle {
+    position: fixed;
+    top: calc(12px + env(safe-area-inset-top));
+    right: 12px;
+    z-index: 9000;
+    padding: 6px 12px;
+  }
+
+  .sound-toggle {
+    top: calc(12px + env(safe-area-inset-top)) !important;
+  }
+
+  .hero-float-top-left {
+    top: calc(14px + env(safe-area-inset-top));
+    left: 16px;
+    max-width: calc(100% - 110px);
   }
 
   .overlay {
@@ -19,23 +46,6 @@
 
   .overlay.active {
     opacity: 1;
-  }
-
-  .theme-toggle {
-    position: fixed;
-    top: 12px;
-    right: 12px;
-    z-index: 9000;
-    padding: 6px 12px;
-  }
-
-  .hero {
-    min-height: 100dvh;
-    height: 100dvh;
-    padding: 78px 16px 64px;
-    box-sizing: border-box;
-    overflow: hidden;
-    align-items: flex-start;
   }
 
   .hero-window,
@@ -128,12 +138,6 @@
     display: none;
   }
 
-  .hero-float-top-left {
-    top: 14px;
-    left: 16px;
-    max-width: calc(100% - 110px);
-  }
-
   .hero-float-bottom {
     position: fixed;
     left: 50%;
@@ -160,7 +164,7 @@
 
   .window {
     position: fixed !important;
-    top: 58px !important;
+    top: calc(58px + env(safe-area-inset-top)) !important;
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;

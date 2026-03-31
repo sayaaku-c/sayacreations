@@ -132,7 +132,7 @@ function playIntroSound() {
 function updateSoundToggle() {
   const btn = document.querySelector(".sound-toggle");
   if (!btn) return;
-  btn.textContent = soundEnabled ? "Sound On" : "Sound Off";
+  btn.textContent = `Sound: ${soundEnabled ? "On" : "Off"}`;
 }
 
 function toggleSound() {
