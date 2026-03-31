@@ -7,22 +7,21 @@
     overflow: hidden;
   }
 
-  :root {
-    --mobile-top-offset: 0px;
-  }
-
   body {
     min-height: 100svh;
     position: relative;
   }
 
   .hero {
-    min-height: 100svh;
-    height: 100svh;
+    min-height: 100vh;
+    height: 100vh;
     padding: 78px 16px 64px;
     box-sizing: border-box;
     overflow: hidden;
-    align-items: flex-start;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .theme-toggle {
@@ -73,6 +72,12 @@
     border-radius: 0 !important;
   }
 
+  .hero-window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .main-window-bar,
   .main-window-close {
     display: none !important;
@@ -94,9 +99,11 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px 12px;
     width: min(340px, 100%);
-    margin: calc(92px + var(--mobile-top-offset)) auto 0;
     padding: 0;
     justify-items: center;
+
+    margin: 0 auto;
+    transform: translateY(24px);
   }
 
   .nav-grid button:nth-child(4) {

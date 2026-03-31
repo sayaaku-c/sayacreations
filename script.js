@@ -108,14 +108,13 @@ function unlockSound() {
 }
 
 function playSound(sound) {
-  if (!soundUnlocked || !soundEnabled) return;
+  if (!soundUnlocked || !soundEnabled || !sound) return;
 
-  if (sound.playing()) {
-    sound.stop();
-  }
+  if (sound.playing()) return;
 
   sound.play();
 }
+let soundToggleLocked = false;
 
 function playIntroSound() {
   if (introPlayed || !soundEnabled) return;
@@ -136,9 +135,22 @@ function updateSoundToggle() {
 }
 
 function toggleSound() {
+  if (soundToggleLocked) return;
+  soundToggleLocked = true;
+
   soundEnabled = !soundEnabled;
   localStorage.setItem("soundEnabled", String(soundEnabled));
   updateSoundToggle();
+
+  if (soundUnlocked) {
+    if (soundEnabled) {
+      playSound(sounds.light);
+    }
+  }
+
+  setTimeout(() => {
+    soundToggleLocked = false;
+  }, 220);
 }
 
 updateSoundToggle();
@@ -154,13 +166,11 @@ updateSoundToggle();
   );
 });
 
-document
-  .querySelectorAll(".bar-tab, .theme-toggle, .sound-toggle")
-  .forEach((el) => {
-    el.addEventListener("click", () => {
-      playSound(sounds.tap);
-    });
+document.querySelectorAll(".bar-tab").forEach((el) => {
+  el.addEventListener("click", () => {
+    playSound(sounds.tap);
   });
+});
 
 /* =====================================
    SPACE KEY STATE
