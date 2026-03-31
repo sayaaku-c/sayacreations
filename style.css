@@ -172,21 +172,21 @@ body.dark .sound-toggle {
 
 /* THEME ICONS */
 body.light .theme-toggle {
-  background-image: url("images/icons/designs.svg");
+  background-image: url("images/icons/Light.svg");
 }
 
 body.dark .theme-toggle {
-  background-image: url("images/icons/misc.svg");
+  background-image: url("images/icons/Dark.svg");
 }
 
 /* SOUND ICONS */
 body:not(.sound-off) .sound-toggle {
-  background-image: url("images/icons/designs.svg");
+  background-image: url("images/icons/Sound-Off.svg");
   opacity: 1;
 }
 
 body.sound-off .sound-toggle {
-  background-image: url("images/icons/misc.svg");
+  background-image: url("images/icons/Sound-On.svg");
   opacity: 1;
 }
 
