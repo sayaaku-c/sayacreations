@@ -112,7 +112,7 @@ p {
 }
 
 /* =====================================================
-   5. THEMES
+   5. THEMES//SOUND
    ===================================================== */
 
 body.light {
@@ -129,6 +129,26 @@ body.dark {
   --window: rgba(242, 238, 234, 0.12);
 }
 
+.sound-toggle {
+  position: fixed;
+  top: 30px;
+  right: 130px;
+  background: none;
+  border: 1px solid var(--text);
+  color: var(--text);
+  padding: 6px 14px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+@media (max-width: 900px) {
+  .sound-toggle {
+    top: 12px;
+    right: 94px;
+    z-index: 9000;
+    padding: 6px 12px;
+  }
+}
 /* =====================================================
    6. GLOBAL LAYOUT
    ===================================================== */
@@ -374,9 +394,15 @@ body.dark .background-text {
   display: grid;
   grid-template-columns: repeat(5, auto);
   justify-content: center;
-  gap: 68px;
+  gap: 78px;
   margin-bottom: 0;
-  padding-top: 60px;
+  padding-top: 72px;
+}
+
+.hero {
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 150px;
 }
 
 .nav-grid button {
@@ -391,6 +417,34 @@ body.dark .background-text {
   gap: 8px;
 }
 
+@keyframes navFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(1deg);
+  }
+}
+
+.nav-grid button img {
+  animation: navFloat 6s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.nav-grid button:nth-child(2) img {
+  animation-delay: 0.5s;
+}
+.nav-grid button:nth-child(3) img {
+  animation-delay: 1s;
+}
+.nav-grid button:nth-child(4) img {
+  animation-delay: 1.5s;
+}
+.nav-grid button:nth-child(5) img {
+  animation-delay: 2s;
+}
+
 .nav,
 .nav button,
 .hero-buttons,
@@ -401,17 +455,16 @@ body.dark .background-text {
 }
 
 .nav-grid img {
-  width: 92px;
-  height: 62px;
-  object-fit: cover;
-
+  width: 108px;
+  height: 74px;
+  object-fit: contain;
   transition:
     transform 0.3s ease,
     opacity 0.3s ease;
 }
 
 .nav-grid span {
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(20, 20, 20, 0.62);
@@ -470,46 +523,34 @@ body.dark .nav-grid span {
 
 .hero-window {
   position: relative;
-  overflow: hidden;
-
-  background: rgba(250, 252, 255, 0.9);
-
-  padding: 52px 52px 44px;
-  height: 170px;
-
-  border-radius: 10px;
-
-  width: 760px;
-  max-width: 84vw;
-
-  overflow: hidden;
-
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0;
+  height: auto;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0;
+  overflow: visible;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-
-  border: 1px solid rgba(78, 86, 96, 0.22);
-
-  box-shadow:
-    0 18px 40px rgba(88, 98, 110, 0.12),
-    0 6px 14px rgba(88, 98, 110, 0.07);
-
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  align-items: center;
 }
 
 body.dark .hero-window {
-  background: rgba(242, 238, 234, 0.16);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
 
-  border: 1px solid rgba(240, 235, 230, 0.18);
-
-  box-shadow:
-    0 34px 76px rgba(18, 18, 24, 0.46),
-    0 14px 32px rgba(30, 30, 40, 0.28),
-    0 4px 10px rgba(12, 12, 18, 0.2);
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+.main-window-bar,
+.main-window-close {
+  display: none !important;
 }
 
 .hero-float {
@@ -538,6 +579,7 @@ body.dark .hero-window {
 }
 
 .hero-float-bottom {
+  position: fixed;
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
@@ -545,15 +587,26 @@ body.dark .hero-window {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 5px;
 
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(20, 20, 20, 0.46);
+  color: rgba(20, 20, 20, 0.72);
 
   pointer-events: auto;
   text-align: center;
+
+  width: max-content;
+  max-width: calc(100vw - 32px);
+}
+
+.hero-bottom-line-main,
+.hero-bottom-line-sub {
+  display: block;
+  text-align: center;
+  width: 100%;
 }
 
 .hero-bottom-line-main {
@@ -2870,39 +2923,45 @@ body.dark .contact-main-title {
   position: fixed;
   inset: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background: rgba(0, 0, 0, 0.92);
   display: none;
   justify-content: center;
   align-items: center;
-  padding: 24px;
+  padding: 16px;
   box-sizing: border-box;
   z-index: 99999;
   opacity: 0;
-  transition: opacity 0.18s ease;
+  transition: opacity 0.2s ease;
 }
 
 .image-viewer.active {
   display: flex;
   opacity: 1;
 }
+
 #viewerImage {
   display: block;
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 48px);
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 96px);
   width: auto;
   height: auto;
-  margin: 0 auto;
+  object-fit: contain;
+  margin: auto;
   position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
   border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  transform: translate3d(0px, 0px, 0) scale(1);
+  transform-origin: center center;
   transition:
     transform 0.22s ease,
     opacity 0.18s ease;
-  transform: translate(0px, 0px) scale(1);
-  transform-origin: center center;
-  cursor: default;
   opacity: 0;
+  touch-action: none;
+}
+
+.image-viewer.active #viewerImage {
+  opacity: 1;
 }
 
 #viewerImage.panning {
@@ -2911,12 +2970,29 @@ body.dark .contact-main-title {
 }
 
 #viewerImage.zoomed {
-  transform: scale(1.8);
   cursor: grab;
 }
 
-.image-viewer.active #viewerImage {
-  opacity: 1;
+@media (max-width: 900px) {
+  .image-viewer {
+    padding: 12px;
+  }
+
+  #viewerImage {
+    max-width: calc(100vw - 24px);
+    max-height: calc(100dvh - 120px);
+  }
+
+  #viewerZoom {
+    top: 14px;
+    right: 14px;
+  }
+
+  .viewer-hint {
+    bottom: 14px;
+    max-width: calc(100vw - 32px);
+    text-align: center;
+  }
 }
 
 /* =====================================
@@ -3690,19 +3766,29 @@ body.dark .bottom-wave-fog::after {
 
 /* The visible UI starts buried in haze, not moving upward */
 body.intro-active .hero-window,
-body.intro-active .hero-float-top-left,
-body.intro-active .hero-float-bottom {
+body.intro-active .hero-float-top-left {
   opacity: 0;
   filter: blur(26px);
   transform: scale(0.992);
 }
 
 body.intro-show .hero-window,
-body.intro-show .hero-float-top-left,
-body.intro-show .hero-float-bottom {
+body.intro-show .hero-float-top-left {
   opacity: 1;
   filter: blur(0px);
   transform: scale(1);
+}
+
+body.intro-active .hero-float-bottom {
+  opacity: 0;
+  filter: blur(26px);
+  transform: translateX(-50%) scale(0.992);
+}
+
+body.intro-show .hero-float-bottom {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateX(-50%) scale(1);
 }
 
 .hero-window,

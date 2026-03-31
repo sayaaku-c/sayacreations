@@ -137,15 +137,33 @@ document.querySelectorAll(".bar-tab, .theme-toggle").forEach((el) => {
   });
 });
 
-function playSound(sound) {
-  if (!soundUnlocked) return;
+function playIntroSound() {
+  if (introPlayed || !soundEnabled) return;
+  introPlayed = true;
 
-  if (sound.playing()) {
-    sound.stop();
-  }
+  sounds.intro.volume(0);
+  sounds.intro.play();
 
-  sound.play();
+  setTimeout(() => {
+    sounds.intro.volume(0.35);
+  }, 40);
 }
+
+let soundEnabled = localStorage.getItem("soundEnabled") !== "false";
+
+function updateSoundToggle() {
+  const btn = document.querySelector(".sound-toggle");
+  if (!btn) return;
+  btn.textContent = soundEnabled ? "Sound On" : "Sound Off";
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  localStorage.setItem("soundEnabled", String(soundEnabled));
+  updateSoundToggle();
+}
+
+updateSoundToggle();
 
 /* =====================================
    SPACE KEY STATE
@@ -840,6 +858,7 @@ let zoomed = false;
 let panX = 0;
 let panY = 0;
 let isPanning = false;
+let isTouchPanning = false;
 let panStartX = 0;
 let panStartY = 0;
 
@@ -852,8 +871,8 @@ function updateViewerTransform() {
     const viewerRect = imageViewer.getBoundingClientRect();
     const imageRect = viewerImage.getBoundingClientRect();
 
-    const baseWidth = imageRect.width / (zoomed ? 1.8 : 1);
-    const baseHeight = imageRect.height / (zoomed ? 1.8 : 1);
+    const baseWidth = imageRect.width / scale;
+    const baseHeight = imageRect.height / scale;
 
     const scaledWidth = baseWidth * scale;
     const scaledHeight = baseHeight * scale;
@@ -871,7 +890,7 @@ function updateViewerTransform() {
     panY = 0;
   }
 
-  viewerImage.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+  viewerImage.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${scale})`;
 }
 
 function resetViewerState() {
@@ -879,10 +898,11 @@ function resetViewerState() {
   panX = 0;
   panY = 0;
   isPanning = false;
+  isTouchPanning = false;
   updateViewerTransform();
 
   if (viewerImage) {
-    viewerImage.classList.remove("zoomed");
+    viewerImage.classList.remove("zoomed", "panning");
   }
 
   if (viewerZoom) {
@@ -901,6 +921,12 @@ function openImageViewer(src) {
   resetViewerState();
 
   imageViewer.classList.add("active");
+
+  requestAnimationFrame(() => {
+    panX = 0;
+    panY = 0;
+    updateViewerTransform();
+  });
 
   if (viewerHint) {
     viewerHint.classList.add("active");
@@ -926,13 +952,13 @@ viewerZoom?.addEventListener("click", (e) => {
 
   if (zoomed) {
     viewerImage.classList.add("zoomed");
-    if (viewerZoom) viewerZoom.textContent = "Zoom Out";
+    viewerZoom.textContent = "Zoom Out";
     if (viewerHint) viewerHint.textContent = "Drag image to look around";
   } else {
     viewerImage.classList.remove("zoomed");
     panX = 0;
     panY = 0;
-    if (viewerZoom) viewerZoom.textContent = "Zoom";
+    viewerZoom.textContent = "Zoom";
     if (viewerHint) viewerHint.textContent = "Click outside image to close";
   }
 
@@ -975,6 +1001,47 @@ document.addEventListener("mouseup", () => {
 
   isPanning = false;
   viewerImage?.classList.remove("panning");
+});
+
+viewerImage?.addEventListener(
+  "touchstart",
+  (e) => {
+    if (!zoomed || e.touches.length !== 1) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    isTouchPanning = true;
+
+    const touch = e.touches[0];
+    panStartX = touch.clientX - panX;
+    panStartY = touch.clientY - panY;
+  },
+  { passive: false }
+);
+
+viewerImage?.addEventListener(
+  "touchmove",
+  (e) => {
+    if (!zoomed || !isTouchPanning || e.touches.length !== 1) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const touch = e.touches[0];
+    panX = touch.clientX - panStartX;
+    panY = touch.clientY - panStartY;
+    updateViewerTransform();
+  },
+  { passive: false }
+);
+
+viewerImage?.addEventListener("touchend", () => {
+  isTouchPanning = false;
+});
+
+viewerImage?.addEventListener("touchcancel", () => {
+  isTouchPanning = false;
 });
 
 document.addEventListener("keydown", (e) => {
