@@ -98,18 +98,27 @@ const sounds = {
 };
 
 let soundUnlocked = false;
+let soundEnabled = localStorage.getItem("soundEnabled") !== "false";
+let introPlayed = false;
 
 function unlockSound() {
   if (soundUnlocked) return;
-
   Howler.ctx.resume();
   soundUnlocked = true;
 }
 
-let introPlayed = false;
+function playSound(sound) {
+  if (!soundUnlocked || !soundEnabled) return;
+
+  if (sound.playing()) {
+    sound.stop();
+  }
+
+  sound.play();
+}
 
 function playIntroSound() {
-  if (introPlayed) return;
+  if (introPlayed || !soundEnabled) return;
   introPlayed = true;
 
   sounds.intro.volume(0);
@@ -119,6 +128,20 @@ function playIntroSound() {
     sounds.intro.volume(0.35);
   }, 40);
 }
+
+function updateSoundToggle() {
+  const btn = document.querySelector(".sound-toggle");
+  if (!btn) return;
+  btn.textContent = soundEnabled ? "Sound On" : "Sound Off";
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  localStorage.setItem("soundEnabled", String(soundEnabled));
+  updateSoundToggle();
+}
+
+updateSoundToggle();
 
 ["click", "mousemove", "touchstart"].forEach((event) => {
   document.addEventListener(
@@ -136,34 +159,6 @@ document.querySelectorAll(".bar-tab, .theme-toggle").forEach((el) => {
     playSound(sounds.tap);
   });
 });
-
-function playIntroSound() {
-  if (introPlayed || !soundEnabled) return;
-  introPlayed = true;
-
-  sounds.intro.volume(0);
-  sounds.intro.play();
-
-  setTimeout(() => {
-    sounds.intro.volume(0.35);
-  }, 40);
-}
-
-let soundEnabled = localStorage.getItem("soundEnabled") !== "false";
-
-function updateSoundToggle() {
-  const btn = document.querySelector(".sound-toggle");
-  if (!btn) return;
-  btn.textContent = soundEnabled ? "Sound On" : "Sound Off";
-}
-
-function toggleSound() {
-  soundEnabled = !soundEnabled;
-  localStorage.setItem("soundEnabled", String(soundEnabled));
-  updateSoundToggle();
-}
-
-updateSoundToggle();
 
 /* =====================================
    SPACE KEY STATE
@@ -1017,7 +1012,7 @@ viewerImage?.addEventListener(
     panStartX = touch.clientX - panX;
     panStartY = touch.clientY - panY;
   },
-  { passive: false }
+  { passive: false },
 );
 
 viewerImage?.addEventListener(
@@ -1033,7 +1028,7 @@ viewerImage?.addEventListener(
     panY = touch.clientY - panStartY;
     updateViewerTransform();
   },
-  { passive: false }
+  { passive: false },
 );
 
 viewerImage?.addEventListener("touchend", () => {
