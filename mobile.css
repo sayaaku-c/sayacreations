@@ -15,7 +15,7 @@
   .hero {
     min-height: 100vh;
     height: 100vh;
-    padding: 92px 16px 64px;
+    padding: 78px 16px 64px;
     box-sizing: border-box;
     overflow: hidden;
     align-items: flex-start;
@@ -34,7 +34,7 @@
   }
 
   .hero-float-top-left {
-    top: 24px;
+    top: 14px;
     left: 16px;
     max-width: calc(100% - 110px);
   }
@@ -87,7 +87,7 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px 12px;
     width: min(340px, 100%);
-    margin: 118px auto 0;
+    margin: 92px auto 0;
     padding: 0;
     justify-items: center;
   }
@@ -164,7 +164,7 @@
 
   .window {
     position: fixed !important;
-    top: 74px !important;
+    top: 58px !important;
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
@@ -575,4 +575,12 @@
   margin: auto;
   transform-origin: center center;
   touch-action: none;
+}
+
+.fog-layer {
+  inset: -18% !important;
+}
+
+.fog-layer::before {
+  inset: -14% !important;
 }
