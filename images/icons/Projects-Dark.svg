@@ -10,13 +10,17 @@
         fill: none;
       }
 
-      .cls-1, .cls-2, .cls-3 {
-        stroke: #000;
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke: #fff;
         stroke-miterlimit: 10;
       }
 
-      .cls-2, .cls-3 {
+      .cls-2, .cls-3, .cls-4 {
         stroke-width: 13px;
+      }
+
+      .cls-4 {
+        fill: #fff;
       }
     </style>
   </defs>
@@ -33,6 +37,6 @@
   <rect class="cls-3" x="201.48" y="137.54" width="65.61" height="3.96"/>
   <rect class="cls-3" x="106.8" y="163.52" width="65.61" height="3.96"/>
   <rect class="cls-3" x="106.8" y="189.5" width="65.61" height="3.96"/>
-  <path class="cls-3" d="M51.2,261.39H18.51V18.78c0-3.36,2.72-6.09,6.09-6.09h20.53c3.36,0,6.09,2.72,6.09,6.09v242.61Z"/>
+  <path class="cls-4" d="M51.2,261.39H18.51V18.78c0-3.36,2.72-6.09,6.09-6.09h20.53c3.36,0,6.09,2.72,6.09,6.09v242.61Z"/>
   <path class="cls-1" d="M33.67,312.49l15.99-39.46h-30.01s13.87,39.46,13.87,39.46c.02.07.12.07.15,0Z"/>
 </svg>
