@@ -17,8 +17,8 @@
   }
 
   .hero {
-    min-height: 100vh;
-    height: 100vh;
+    min-height: 100svh;
+    height: 100svh;
     padding: 78px 16px 64px;
     box-sizing: border-box;
     overflow: hidden;
