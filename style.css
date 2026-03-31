@@ -112,7 +112,7 @@ p {
 }
 
 /* =====================================================
-   5. THEMES//SOUND
+   5. THEMES
    ===================================================== */
 
 body.light {
@@ -129,26 +129,6 @@ body.dark {
   --window: rgba(242, 238, 234, 0.12);
 }
 
-.sound-toggle {
-  position: fixed;
-  top: 30px;
-  right: 130px;
-  background: none;
-  border: 1px solid var(--text);
-  color: var(--text);
-  padding: 6px 14px;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-@media (max-width: 900px) {
-  .sound-toggle {
-    top: 12px;
-    right: 94px;
-    z-index: 9000;
-    padding: 6px 12px;
-  }
-}
 /* =====================================================
    6. GLOBAL LAYOUT
    ===================================================== */
@@ -2923,45 +2903,39 @@ body.dark .contact-main-title {
   position: fixed;
   inset: 0;
   width: 100vw;
-  height: 100dvh;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.92);
   display: none;
   justify-content: center;
   align-items: center;
-  padding: 16px;
+  padding: 24px;
   box-sizing: border-box;
   z-index: 99999;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.18s ease;
 }
 
 .image-viewer.active {
   display: flex;
   opacity: 1;
 }
-
 #viewerImage {
   display: block;
-  max-width: calc(100vw - 32px);
-  max-height: calc(100dvh - 96px);
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 48px);
   width: auto;
   height: auto;
-  object-fit: contain;
-  margin: auto;
+  margin: 0 auto;
   position: relative;
-  border-radius: 6px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-  transform: translate3d(0px, 0px, 0) scale(1);
-  transform-origin: center center;
+  border-radius: 6px;
   transition:
     transform 0.22s ease,
     opacity 0.18s ease;
+  transform: translate(0px, 0px) scale(1);
+  transform-origin: center center;
+  cursor: default;
   opacity: 0;
-  touch-action: none;
-}
-
-.image-viewer.active #viewerImage {
-  opacity: 1;
 }
 
 #viewerImage.panning {
@@ -2970,29 +2944,37 @@ body.dark .contact-main-title {
 }
 
 #viewerImage.zoomed {
+  transform: scale(1.8);
   cursor: grab;
 }
 
-@media (max-width: 900px) {
-  .image-viewer {
-    padding: 12px;
-  }
+.image-viewer.active #viewerImage {
+  opacity: 1;
+}
 
-  #viewerImage {
-    max-width: calc(100vw - 24px);
-    max-height: calc(100dvh - 120px);
-  }
+.image-viewer {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
 
-  #viewerZoom {
-    top: 14px;
-    right: 14px;
-  }
+.image-viewer.active {
+  display: flex;
+}
 
-  .viewer-hint {
-    bottom: 14px;
-    max-width: calc(100vw - 32px);
-    text-align: center;
-  }
+#viewerImage {
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 110px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: auto;
+  transform-origin: center center;
+  touch-action: none;
 }
 
 /* =====================================

@@ -98,27 +98,18 @@ const sounds = {
 };
 
 let soundUnlocked = false;
-let soundEnabled = localStorage.getItem("soundEnabled") !== "false";
-let introPlayed = false;
 
 function unlockSound() {
   if (soundUnlocked) return;
+
   Howler.ctx.resume();
   soundUnlocked = true;
 }
 
-function playSound(sound) {
-  if (!soundUnlocked || !soundEnabled) return;
-
-  if (sound.playing()) {
-    sound.stop();
-  }
-
-  sound.play();
-}
+let introPlayed = false;
 
 function playIntroSound() {
-  if (introPlayed || !soundEnabled) return;
+  if (introPlayed) return;
   introPlayed = true;
 
   sounds.intro.volume(0);
@@ -129,20 +120,6 @@ function playIntroSound() {
   }, 40);
 }
 
-function updateSoundToggle() {
-  const btn = document.querySelector(".sound-toggle");
-  if (!btn) return;
-  btn.textContent = soundEnabled ? "Sound On" : "Sound Off";
-}
-
-function toggleSound() {
-  soundEnabled = !soundEnabled;
-  localStorage.setItem("soundEnabled", String(soundEnabled));
-  updateSoundToggle();
-}
-
-updateSoundToggle();
-
 ["click", "mousemove", "touchstart"].forEach((event) => {
   document.addEventListener(
     event,
@@ -150,17 +127,26 @@ updateSoundToggle();
       unlockSound();
       playIntroSound();
     },
-    { once: true }
+    { once: true },
   );
 });
 
-document
-  .querySelectorAll(".nav-grid button, .bar-tab, .theme-toggle, .sound-toggle")
-  .forEach((el) => {
-    el.addEventListener("click", () => {
-      playSound(sounds.tap);
-    });
+document.querySelectorAll(".bar-tab, .theme-toggle").forEach((el) => {
+  el.addEventListener("click", () => {
+    playSound(sounds.tap);
   });
+});
+
+function playSound(sound) {
+  if (!soundUnlocked) return;
+
+  if (sound.playing()) {
+    sound.stop();
+  }
+
+  sound.play();
+}
+
 
 /* =====================================
    SPACE KEY STATE
@@ -855,6 +841,7 @@ let zoomed = false;
 let panX = 0;
 let panY = 0;
 let isPanning = false;
+let isTouchPanning = false;
 let panStartX = 0;
 let panStartY = 0;
 
@@ -917,6 +904,12 @@ function openImageViewer(src) {
 
   imageViewer.classList.add("active");
 
+  requestAnimationFrame(() => {
+    panX = 0;
+    panY = 0;
+    updateViewerTransform();
+  });
+
   if (viewerHint) {
     viewerHint.classList.add("active");
   }
@@ -975,6 +968,40 @@ viewerImage?.addEventListener("mousedown", (e) => {
   panStartY = e.clientY - panY;
 
   viewerImage.classList.add("panning");
+});
+
+viewerImage?.addEventListener(
+  "touchstart",
+  (e) => {
+    if (!zoomed || e.touches.length !== 1) return;
+
+    e.preventDefault();
+    isTouchPanning = true;
+
+    const touch = e.touches[0];
+    panStartX = touch.clientX - panX;
+    panStartY = touch.clientY - panY;
+  },
+  { passive: false },
+);
+
+viewerImage?.addEventListener(
+  "touchmove",
+  (e) => {
+    if (!zoomed || !isTouchPanning || e.touches.length !== 1) return;
+
+    e.preventDefault();
+
+    const touch = e.touches[0];
+    panX = touch.clientX - panStartX;
+    panY = touch.clientY - panStartY;
+    updateViewerTransform();
+  },
+  { passive: false },
+);
+
+viewerImage?.addEventListener("touchend", () => {
+  isTouchPanning = false;
 });
 
 document.addEventListener("mousemove", (e) => {
