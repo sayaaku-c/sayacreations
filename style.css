@@ -133,24 +133,80 @@ body.dark {
   --window: rgba(242, 238, 234, 0.12);
 }
 
+body.dark .theme-toggle,
+body.dark .sound-toggle {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.theme-toggle,
 .sound-toggle {
   position: fixed;
   top: 30px;
-  right: 130px;
-  background: none;
-  border: 1px solid var(--text);
-  color: var(--text);
-  padding: 6px 14px;
-  cursor: pointer;
   z-index: 1000;
+
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+
+  font-size: 0;
+  color: transparent;
+
+  overflow: hidden;
+  text-indent: -9999px;
+  white-space: nowrap;
 }
 
+/* desktop */
+.theme-toggle {
+  right: 40px;
+}
+
+.sound-toggle {
+  right: 84px;
+}
+
+/* THEME ICONS */
+body.light .theme-toggle {
+  background-image: url("images/icons/designs.svg");
+}
+
+body.dark .theme-toggle {
+  background-image: url("images/icons/misc.svg");
+}
+
+/* SOUND ICONS */
+body:not(.sound-off) .sound-toggle {
+  background-image: url("images/icons/designs.svg");
+  opacity: 1;
+}
+
+body.sound-off .sound-toggle {
+  background-image: url("images/icons/misc.svg");
+  opacity: 1;
+}
+
+/* mobile ONLY */
 @media (max-width: 900px) {
+  .theme-toggle,
   .sound-toggle {
-    top: 12px;
-    right: 94px;
-    z-index: 9000;
-    padding: 6px 12px;
+    top: 18px !important;
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .theme-toggle {
+    right: 14px !important;
+    transform: none !important;
+  }
+
+  .sound-toggle {
+    right: 14px !important;
+    transform: translateX(-38px) translateY(6px) !important;
   }
 }
 /* =====================================================
@@ -189,20 +245,6 @@ body.dark {
 /* =====================================================
    7. UI ELEMENTS
    ===================================================== */
-
-/* THEME TOGGLE */
-
-.theme-toggle {
-  position: fixed;
-  top: 30px;
-  right: 40px;
-  background: none;
-  border: 1px solid var(--text);
-  color: var(--text);
-  padding: 6px 14px;
-  cursor: pointer;
-  z-index: 1000;
-}
 
 /* GRAIN TEXTURE */
 

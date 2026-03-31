@@ -178,7 +178,7 @@
 
   .window {
     position: fixed !important;
-    top: calc(58px + var(--mobile-top-offset)) !important;
+    top: calc(48px + var(--mobile-top-offset)) !important;
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;

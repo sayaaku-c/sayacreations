@@ -63,12 +63,12 @@ const sounds = {
 
   light: new Howl({
     src: ["sounds/light.mp3"],
-    volume: 0.45,
+    volume: 0.35,
   }),
 
   dark: new Howl({
     src: ["sounds/dark.mp3"],
-    volume: 0.45,
+    volume: 0.55,
   }),
 
   sticky: new Howl({
@@ -128,29 +128,32 @@ function playIntroSound() {
   }, 40);
 }
 
-function updateSoundToggle() {
-  const btn = document.querySelector(".sound-toggle");
-  if (!btn) return;
-  btn.textContent = `Sound: ${soundEnabled ? "On" : "Off"}`;
-}
-
 function toggleSound() {
   if (soundToggleLocked) return;
   soundToggleLocked = true;
 
   soundEnabled = !soundEnabled;
   localStorage.setItem("soundEnabled", String(soundEnabled));
-  updateSoundToggle();
 
-  if (soundUnlocked) {
-    if (soundEnabled) {
-      playSound(sounds.light);
-    }
+  // ✅ ADD THIS LINE
+  document.body.classList.toggle("sound-off", !soundEnabled);
+
+  updateSoundToggle();
+  document.body.classList.toggle("sound-off", !soundEnabled);
+
+  if (soundUnlocked && soundEnabled) {
+    playSound(sounds.light);
   }
 
   setTimeout(() => {
     soundToggleLocked = false;
   }, 220);
+}
+
+function updateSoundToggle() {
+  const btn = document.querySelector(".sound-toggle");
+  if (!btn) return;
+  btn.textContent = `Sound: ${soundEnabled ? "On" : "Off"}`;
 }
 
 updateSoundToggle();
