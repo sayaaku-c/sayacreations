@@ -7,6 +7,10 @@
     overflow: hidden;
   }
 
+  :root {
+    --mobile-top-offset: 30px;
+  }
+
   body {
     min-height: 100svh;
     position: relative;
@@ -23,18 +27,21 @@
 
   .theme-toggle {
     position: fixed;
-    top: calc(12px + env(safe-area-inset-top));
+    top: calc(12px + var(--mobile-top-offset));
     right: 12px;
     z-index: 9000;
     padding: 6px 12px;
   }
 
   .sound-toggle {
-    top: calc(12px + env(safe-area-inset-top)) !important;
+    top: calc(12px + var(--mobile-top-offset)) !important;
+    right: 94px;
+    z-index: 9000;
+    padding: 6px 12px;
   }
 
   .hero-float-top-left {
-    top: 14px;
+    top: calc(14px + var(--mobile-top-offset));
     left: 16px;
     max-width: calc(100% - 110px);
   }
@@ -87,7 +94,7 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px 12px;
     width: min(340px, 100%);
-    margin: 92px auto 0;
+    margin: calc(92px + var(--mobile-top-offset)) auto 0;
     padding: 0;
     justify-items: center;
   }
@@ -164,7 +171,7 @@
 
   .window {
     position: fixed !important;
-    top: 58px !important;
+    top: calc(58px + var(--mobile-top-offset)) !important;
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;

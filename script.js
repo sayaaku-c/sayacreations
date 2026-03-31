@@ -155,7 +155,7 @@ updateSoundToggle();
 });
 
 document
-  .querySelectorAll(".nav-grid button, .bar-tab, .theme-toggle, .sound-toggle")
+  .querySelectorAll(".bar-tab, .theme-toggle, .sound-toggle")
   .forEach((el) => {
     el.addEventListener("click", () => {
       playSound(sounds.tap);
