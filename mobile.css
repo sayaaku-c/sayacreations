@@ -8,7 +8,7 @@
   }
 
   :root {
-    --mobile-top-offset: 30px;
+    --mobile-top-offset: 0px;
   }
 
   body {

@@ -4,6 +4,24 @@ function isMobileView() {
   return window.innerWidth <= MOBILE_BREAKPOINT;
 }
 
+function updateMobileViewportOffset() {
+  if (!isMobileView()) {
+    document.documentElement.style.setProperty("--mobile-top-offset", "0px");
+    return;
+  }
+
+  let offset = 0;
+
+  if (window.visualViewport) {
+    offset = Math.max(0, window.visualViewport.offsetTop);
+  }
+
+  document.documentElement.style.setProperty(
+    "--mobile-top-offset",
+    `${Math.round(offset)}px`,
+  );
+}
+
 function disableMobileDragResize() {
   if (!isMobileView()) return;
 
@@ -69,13 +87,25 @@ function watchAboutOpen() {
   });
 }
 
-window.addEventListener("load", () => {
+function runMobileLayoutPass() {
+  updateMobileViewportOffset();
   disableMobileDragResize();
   fitAboutWindowMobile();
+}
+
+window.addEventListener("load", () => {
+  runMobileLayoutPass();
   watchAboutOpen();
+
+  setTimeout(runMobileLayoutPass, 60);
+  setTimeout(runMobileLayoutPass, 180);
+  setTimeout(runMobileLayoutPass, 400);
 });
 
-window.addEventListener("resize", () => {
-  disableMobileDragResize();
-  fitAboutWindowMobile();
-});
+window.addEventListener("resize", runMobileLayoutPass);
+window.addEventListener("orientationchange", runMobileLayoutPass);
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", runMobileLayoutPass);
+  window.visualViewport.addEventListener("scroll", runMobileLayoutPass);
+}
