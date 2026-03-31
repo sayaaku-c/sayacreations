@@ -261,11 +261,11 @@ body.dark {
 
 .background-text {
   position: fixed;
-  top: 390px;
   left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -20%);
   font-size: clamp(150px, 21vw, 400px);
-  line-height: 0.88;
+  line-height: 1.15;
   opacity: 0.065;
   pointer-events: none;
   z-index: 0;
@@ -294,8 +294,8 @@ body.dark {
 }
 
 body.dark .background-text {
-  opacity: 0.34;
-  color: rgba(255, 255, 255, 0.36);
+  opacity: 0.16;
+  color: rgba(255, 255, 255, 0.9);
   text-shadow: 0 2px 20px rgba(120, 160, 255, 0.12);
 
   mask-image: linear-gradient(

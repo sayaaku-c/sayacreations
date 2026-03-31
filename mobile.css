@@ -103,7 +103,7 @@
     justify-items: center;
 
     margin: 0 auto;
-    transform: translateY(24px);
+    transform: translateY(10px);
   }
 
   .nav-grid button:nth-child(4) {
