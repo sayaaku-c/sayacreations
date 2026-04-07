@@ -180,14 +180,31 @@ body.dark .theme-toggle {
 }
 
 /* SOUND ICONS */
-body:not(.sound-off) .sound-toggle {
-  background-image: url("images/icons/Sound-Off.svg");
-  opacity: 1;
+/* LIGHT MODE */
+body.light:not(.sound-off) .sound-toggle {
+  background-image: url("images/icons/Sound-On.svg");
 }
 
-body.sound-off .sound-toggle {
-  background-image: url("images/icons/Sound-On.svg");
-  opacity: 1;
+body.light.sound-off .sound-toggle {
+  background-image: url("images/icons/Sound-Off.svg");
+}
+
+/* DARK MODE */
+body.dark:not(.sound-off) .sound-toggle {
+  background-image: url("images/icons/Sound-On-Dark.svg");
+}
+
+body.dark.sound-off .sound-toggle {
+  background-image: url("images/icons/Sound-Off-Dark.svg");
+}
+
+body.dark .sound-toggle {
+  filter: drop-shadow(0 0 6px rgba(160, 190, 255, 0.35));
+  transition: filter 0.3s ease;
+}
+
+body.dark .sound-toggle:hover {
+  filter: drop-shadow(0 0 10px rgba(160, 190, 255, 0.55));
 }
 
 /* mobile ONLY */
@@ -478,17 +495,59 @@ body.dark .background-text {
   transform-origin: center center;
 }
 
-.nav-grid button:nth-child(2) img {
+.nav-grid button:nth-child(2) {
   animation-delay: 0.5s;
 }
-.nav-grid button:nth-child(3) img {
+.nav-grid button:nth-child(3) {
   animation-delay: 1s;
 }
-.nav-grid button:nth-child(4) img {
+.nav-grid button:nth-child(4) {
   animation-delay: 1.5s;
 }
-.nav-grid button:nth-child(5) img {
+.nav-grid button:nth-child(5) {
   animation-delay: 2s;
+}
+
+/* LIGHT MODE */
+.nav-grid button:nth-child(1) img {
+  content: url("images/icons/About.svg");
+}
+
+.nav-grid button:nth-child(2) img {
+  content: url("images/icons/Projects.svg");
+}
+
+.nav-grid button:nth-child(3) img {
+  content: url("images/icons/Designs.svg");
+}
+
+.nav-grid button:nth-child(4) img {
+  content: url("images/icons/Misc.svg");
+}
+
+.nav-grid button:nth-child(5) img {
+  content: url("images/icons/Contact.svg");
+}
+
+/* DARK MODE */
+body.dark .nav-grid button:nth-child(1) img {
+  content: url("images/icons/About-Dark.svg");
+}
+
+body.dark .nav-grid button:nth-child(2) img {
+  content: url("images/icons/Projects-Dark.svg");
+}
+
+body.dark .nav-grid button:nth-child(3) img {
+  content: url("images/icons/Designs-Dark.svg");
+}
+
+body.dark .nav-grid button:nth-child(4) img {
+  content: url("images/icons/Misc-Dark.svg");
+}
+
+body.dark .nav-grid button:nth-child(5) img {
+  content: url("images/icons/Contact-Dark.svg");
 }
 
 .nav,
@@ -505,8 +564,9 @@ body.dark .background-text {
   height: 74px;
   object-fit: contain;
   transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+    transform 0.35s cubic-bezier(0.22, 0.9, 0.2, 1),
+    opacity 0.35s ease,
+    filter 0.6s ease;
 }
 
 .nav-grid span {
@@ -523,10 +583,49 @@ body.dark .nav-grid span {
 /* HOVER EFFECT */
 
 .nav-grid button:hover img {
-  transform: scale(1.03);
-  opacity: 0.85;
+  transform: translateY(-3px) scale(1.04);
+  opacity: 1;
 }
 
+body.dark .nav-grid img {
+  filter: brightness(1);
+}
+
+.nav-grid button {
+  position: relative;
+}
+
+.nav-grid button::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 78px;
+  height: 78px;
+  transform: translate(-50%, -50%) scale(0.92);
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+
+body.dark .nav-grid button::after {
+  background: radial-gradient(
+    circle,
+    rgba(150, 185, 255, 0.34) 0%,
+    rgba(120, 160, 255, 0.22) 35%,
+    rgba(120, 160, 255, 0.1) 58%,
+    rgba(120, 160, 255, 0) 76%
+  );
+  filter: blur(14px);
+}
+
+body.dark .nav-grid button:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.08);
+}
 /* =====================================================
    10. HERO TEXT
    ===================================================== */
@@ -1382,7 +1481,7 @@ body.dark .window.dragging {
   padding: 0 !important;
   overflow: hidden;
   width: min(62.5vw, 1200px);
-  height: min(62.5vh, 780px);
+  height: min(82vh, 1040px);
   min-width: 720px;
 }
 
@@ -2368,7 +2467,7 @@ body.dark #projects .bar-tab-divider {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   align-items: start;
 }
@@ -3951,4 +4050,159 @@ body.dark.intro-active .fog-layer::before {
 body.dark.intro-show .fog-layer::before {
   opacity: 0;
   transform: translateY(-10%);
+}
+
+/* desktop-only helper */
+.desktop-only {
+  display: inline-flex;
+}
+
+@media (max-width: 900px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+/* sketch window */
+#sketchpad {
+  width: min(70vw, 1080px);
+  height: min(78vh, 860px);
+  min-width: 820px;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+#sketchpad .window-scroll {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.sketchpad-ui {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.sketchpad-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: #d4d0c8;
+  border: 2px solid #808080;
+  box-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #6e6e6e;
+  flex: 0 0 auto;
+}
+
+.toolbar-sep {
+  width: 2px;
+  align-self: stretch;
+  margin: 0 4px;
+  background: linear-gradient(to right, #7f7f7f, #ffffff);
+}
+
+.tool-btn,
+.swatch {
+  appearance: none;
+  border: 2px solid #808080;
+  background: #d4d0c8;
+  box-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #6e6e6e;
+  cursor: pointer;
+}
+
+.tool-btn {
+  height: 30px;
+  padding: 0 10px;
+  font-family: "Cocogoose-Classic-Regular", sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.tool-btn:active,
+.swatch:active {
+  box-shadow:
+    inset -1px -1px 0 #ffffff,
+    inset 1px 1px 0 #6e6e6e;
+}
+
+.swatch {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+
+.swatch-black {
+  background: #111111;
+}
+.swatch-orange {
+  background: #f6a23a;
+}
+.swatch-blue {
+  background: #2f6df6;
+}
+.swatch-red {
+  background: #d64545;
+}
+
+.tool-btn.active-tool {
+  background: #c6d8f7;
+  box-shadow:
+    inset -1px -1px 0 #ffffff,
+    inset 1px 1px 0 #6e6e6e;
+}
+
+.tool-btn-stamp.active-tool {
+  background: #f3d19a;
+}
+
+.sketchpad-canvas-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 4px;
+  background:
+    linear-gradient(
+      45deg,
+      #d8d8d8 25%,
+      transparent 25%,
+      transparent 75%,
+      #d8d8d8 75%
+    ),
+    linear-gradient(
+      45deg,
+      #d8d8d8 25%,
+      transparent 25%,
+      transparent 75%,
+      #d8d8d8 75%
+    );
+  background-position:
+    0 0,
+    8px 8px;
+  background-size: 16px 16px;
+  border: 2px solid #808080;
+  box-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #6e6e6e;
+  overflow: hidden;
+}
+
+#sketchCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid #a8a8a8;
+  cursor: crosshair;
 }

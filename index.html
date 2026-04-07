@@ -1,60 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <!-- =============================
        META
   ============================== -->
     <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
-    <title>SAYA</title>
+      <meta charset="UTF-8" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover"
+      />
+      <title>SAYA</title>
 
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mobile.css" media="(max-width: 900px)" />
-  </head>
+      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="mobile.css" media="(max-width: 900px)" />
+    </head>
 
-
-   <!-- =============================
+    <!-- =============================
        GLOBAL UI
   ============================== -->
 
- <body class="light intro-active">
+    <body class="light intro-active">
+      <button class="theme-toggle" onclick="toggleTheme()"></button>
+      <button class="sound-toggle" onclick="toggleSound()"></button>
 
-<button class="theme-toggle" onclick="toggleTheme()"></button>
-<button class="sound-toggle" onclick="toggleSound()"></button>
+      <!-- Grain Overlay -->
+      <div class="grain"></div>
 
-  <!-- Grain Overlay -->
-  <div class="grain"></div>
+      <!-- Background Text -->
+      <div class="background-text">- SAYA -</div>
 
-  <!-- Background Text -->
-  <div class="background-text">- SAYA -</div>
+      <div class="fog-layer"></div>
+      <div class="dark-wash"></div>
+      <div class="hero-bloom"></div>
+      <div class="bottom-wave-fog">
+        <div class="fog-base"></div>
+      </div>
 
-  <div class="fog-layer"></div>
-  <div class="dark-wash"></div>
-  <div class="hero-bloom"></div>
-  <div class="bottom-wave-fog">
-    <div class="fog-base"></div>
-  </div>
-
-    <!-- =============================
+      <!-- =============================
        HERO SECTION
   ============================== -->
 
-    <main class="hero">
-      <div class="hero-float hero-float-top-left">
-        <div>Portfolio</div>
-        <div class="hero-float-top-sub">selected work / visual experiments / interface play</div>
-      </div>
-
-      <div class="hero-window">
-        <!-- Window Bar -->
-        <div class="main-window-bar">
-          <span class="main-window-title">Portfolio</span>
-          <div class="main-window-close"></div>
+      <main class="hero">
+        <div class="hero-float hero-float-top-left">
+          <div>Portfolio</div>
+          <div class="hero-float-top-sub">
+            selected work / visual experiments / interface play
+          </div>
         </div>
+
+        <div class="hero-window">
+          <!-- Window Bar -->
+          <div class="main-window-bar">
+            <span class="main-window-title">Portfolio</span>
+            <div class="main-window-close"></div>
+          </div>
 
           <!-- Navigation Grid -->
           <div class="nav-grid">
@@ -87,644 +87,772 @@
           <p class="hero-paragraph">designer and illustrator</p>
         </div>
 
-      <div class="hero-float hero-float-bottom">
-        <div class="hero-contact-icons">
-          <a href="#">✦</a>
-          <a href="#">◦</a>
-          <a href="#">✳</a>
+        <div class="hero-float hero-float-bottom">
+          <div class="hero-contact-icons">
+            <a href="#">✦</a>
+            <a href="#">◦</a>
+            <a href="#">✳</a>
+          </div>
+
+          <span class="hero-bottom-line-main">
+            Available for freelance / collaborations
+          </span>
+
+          <span class="hero-bottom-line-sub"> © 2026 Sayaaku C </span>
         </div>
+      </main>
 
-        <span class="hero-bottom-line-main">
-          Available for freelance / collaborations
-        </span>
+      <div id="desktop"></div>
 
-        <span class="hero-bottom-line-sub">
-          © 2026 Sayaaku C
-        </span>
-      </div>
-    </main>
-
-    <div id="desktop"></div>
-
-    <!-- =============================
+      <!-- =============================
    ABOUT WINDOW
 ============================= -->
 
-<div class="window draggable" id="about">
-  <div class="window-bar">
-    <span class="window-title">About</span>
-    <button class="window-close" onclick="closeWindow('about')"></button>
-  </div>
+      <div class="window draggable" id="about">
+        <div class="window-bar">
+          <span class="window-title">About</span>
+          <button class="window-close" onclick="closeWindow('about')"></button>
+        </div>
 
-  <!-- desktop layout -->
-  <div class="about-wrapper about-desktop-layout">
-    <div class="about-intro">
-      <h2 class="about-name">Miguel Corral</h2>
-      <p class="about-role">Designer & Illustrator</p>
-      <div class="about-subtext">
-        Current Student at Angelina College
-      </div>
-    </div>
+        <!-- desktop layout -->
+        <div class="about-wrapper about-desktop-layout">
+          <div class="about-intro">
+            <h2 class="about-name">Miguel Corral</h2>
+            <p class="about-role">Designer & Illustrator</p>
+            <div class="about-subtext">Current Student at Angelina College</div>
+          </div>
 
-    <div class="about-bottom">
-      <div class="about-bio about-bio-scroll">
-        <p>
-          Hi! Im miguel - a graphic designer and illustrator based in a small town in Texas. My work
-          primarily centers around creating bold visual systems that extend across digital, print,
-          and experimental spaces, often blending structure with expressive and evolving concepts.
-        </p>
-        <p>
-          My particular interest lies in working on projects that leave some room for exploration - where
-          ideas can shift, expand, and take on new froms as the process moves forward. As I work 
-          on designs for clients I much of my process is kept confined with experimentation, refining, and
-          finding clarity through iteration, alogside keeping a close eye on detail.
-        </p>
-        <p>
-          Outside of designing, I spend much of my time refinig my illustrative skills, working and building
-          personal projects, experimenting with different styles, alongside many other small hobbies ive 
-          picked up over the years. 
-        </p>
-        <p>
-          As of now I offer some level of services such as. . .
-        </p>
-        <ul class="about-list">
-          <li>Creating <span class="text-highlight">visual</span> branding identities</li>
-          <li>Designing <span class="text-highlight">promotional // marketing</span> material</li>
-          <li>Designing music graphics</li>
-          <li>Creating <span class="text-highlight">illustration</span> for multiple applications</li>
-        </ul>
-        <p>
-          Interested in working with me? Send an email at:
-          <span class="text-highlight">miguelcorral001@icloud.com</span>
-        </p>
+          <div class="about-bottom">
+            <div class="about-bio about-bio-scroll">
+              <p>
+                Hi! Im miguel - a graphic designer and illustrator based in a
+                small town in Texas. My work primarily centers around creating
+                bold visual systems that extend across digital, print, and
+                experimental spaces, often blending structure with expressive
+                and evolving concepts.
+              </p>
+              <p>
+                My particular interest lies in working on projects that leave
+                some room for exploration - where ideas can shift, expand, and
+                take on new froms as the process moves forward. As I work on
+                designs for clients much of my process is kept confined with
+                experimentation, refining, and finding clarity through
+                iteration, alogside keeping a close eye on detail.
+              </p>
+              <p>
+                Outside of designing, I spend much of my time refinig my
+                illustrative skills, working and building personal projects,
+                experimenting with different styles, alongside many other small
+                hobbies ive picked up over the years.
+              </p>
+              <p>As of now I offer some level of services such as. . .</p>
+              <ul class="about-list">
+                <li>
+                  Creating <span class="text-highlight">visual</span> branding
+                  identities
+                </li>
+                <li>
+                  Designing
+                  <span class="text-highlight">promotional // marketing</span>
+                  material
+                </li>
+                <li>Creating small <span class="text-highlight">Redesigns</span></li>
+                <li>
+                  Creating <span class="text-highlight">illustrations</span> for
+                  multiple applications
+                </li>
+              </ul>
+              <p>
+                Interested in working with me? Send an email at:
+                <span class="text-highlight">miguelcorral001@icloud.com</span>
+              </p>
 
-        <h3 class="about-heading">EDUCATION</h3>
-        <p>Associate of Applied Science in Design & Applied Arts – Graphic Arts</p>
+              <h3 class="about-heading">EDUCATION</h3>
+              <p>
+                Associate of Applied Science in Design & Applied Arts – Graphic
+                Arts
+              </p>
 
-        <h3 class="about-heading">OTHER INTERESTS</h3>
-        <ul class="about-list">
-          <li>Arts and Crafts</li>
-          <li>Carpentry</li>
-          <li>Gardening</li>
-          <li>Electronics Tinkering</li>
-          <li>Cooking</li>
-          <li>Music/Video Games</li>
-        </ul>
+              <h3 class="about-heading">OTHER INTERESTS</h3>
+              <ul class="about-list">
+                <li>Arts and Crafts</li>
+                <li>Carpentry</li>
+                <li>Gardening</li>
+                <li>Electronics Tinkering</li>
+                <li>Cooking</li>
+                <li>Music/Video Games</li>
+              </ul>
 
-        <h3 class="about-heading">LANGUEGE PROFICIENCY</h3>
-        <div class="about-text">
-          <p>
-            I have native fluency in both
-            <span class="text-highlight">English</span>
-            and
-            <span class="text-highlight">Spanish</span>
-          </p>
-          <div class="about-indent">
-            <p>Can also understand to some degree other variations of the spanish language that arnt typical.</p>
+              <h3 class="about-heading">LANGUAGE PROFICIENCY</h3>
+              <div class="about-text">
+                <p>
+                  I have native fluency in both
+                  <span class="text-highlight">English</span>
+                  and
+                  <span class="text-highlight">Spanish</span>
+                </p>
+                <div class="about-indent">
+                  <p>
+                    Can also understand to some degree other variations of the
+                    spanish language that are not typically interacted with.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-meta">
+              <div class="meta-block">
+                <span class="meta-title">Skills</span>
+                <ul>
+                  <li>Layout</li>
+                  <li>Branding</li>
+                  <li>Typography</li>
+                  <li>Illustration</li>
+                  <li>Photography</li>
+                </ul>
+              </div>
+
+              <div class="meta-block">
+                <span class="meta-title">Tools</span>
+                <ul>
+                  <li>Clip Studio paint</li>
+                  <li>Adobe Suite</li>
+                  <li>Blender</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <img
+          class="about-sticky about-desktop-layout"
+          src="images/01-About/sticky-note.webp"
+        />
+        <div class="about-polaroid-secret about-desktop-layout">
+          <span class="tape tape-left"></span>
+          <span class="tape tape-right"></span>
+          <img src="images/01-About/Self-Polaroid.webp" alt="Hidden portrait" />
+        </div>
+
+        <!-- mobile layout -->
+        <div class="about-mobile-layout">
+          <div class="about-mobile-scroll">
+            <img
+              class="about-mobile-sticky"
+              src="images/01-About/sticky-note.webp"
+              alt="Sticky note"
+            />
+
+            <div class="about-mobile-header">
+              <h2 class="about-mobile-name">Miguel Corral</h2>
+              <p class="about-mobile-role">Designer & Illustrator</p>
+              <div class="about-mobile-subtext">
+                Current Student at Angelina College
+              </div>
+            </div>
+
+            <div class="about-mobile-tag-groups">
+              <div class="about-mobile-tag-group">
+                <h3 class="about-mobile-chip-heading">Skills</h3>
+                <div class="about-mobile-tags">
+                  <span class="about-tag">Layout</span>
+                  <span class="about-tag">Branding</span>
+                  <span class="about-tag">Typography</span>
+                  <span class="about-tag">Illustration</span>
+                  <span class="about-tag">Photography</span>
+                </div>
+              </div>
+
+              <div class="about-mobile-tag-group">
+                <h3 class="about-mobile-chip-heading">Tools</h3>
+                <div class="about-mobile-tags">
+                  <span class="about-tag">Clip Studio</span>
+                  <span class="about-tag">Adobe Suite</span>
+                  <span class="about-tag">Blender</span>
+                  <span class="about-tag">Bilingual</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-mobile-body">
+              <p>
+                Hi, I'm Miguel — a designer and illustrator exploring bold
+                visual systems across digital, print, and experiential spaces. I
+                enjoy creating work that is expressive, adaptable, and built to
+                live across multiple mediums.
+              </p>
+
+              <ul class="about-mobile-list">
+                <li>
+                  Creating <span class="text-highlight">visual</span> branding
+                  identities
+                </li>
+                <li>
+                  Designing
+                  <span class="text-highlight">promotional</span> material
+                </li>
+                <li>Designing music graphics</li>
+                <li>
+                  Creating <span class="text-highlight">illustration</span> for
+                  multiple applications
+                </li>
+              </ul>
+
+              <p>
+                Interested in working with me? Send an email at:
+                <span class="text-highlight">miguelcorral001@icloud.com</span>
+              </p>
+
+              <h3 class="about-mobile-heading">Education</h3>
+              <p>
+                Associate of Applied Science in Design & Applied Arts – Graphic
+                Arts
+              </p>
+
+              <h3 class="about-mobile-heading">Other Interests</h3>
+              <ul class="about-mobile-list">
+                <li>Arts and Crafts</li>
+                <li>Carpentry</li>
+                <li>Gardening</li>
+                <li>Electronics Tinkering</li>
+                <li>Cooking</li>
+                <li>Music / Video Games</li>
+              </ul>
+
+              <h3 class="about-mobile-heading">Language Proficiency</h3>
+              <p>
+                I have native fluency in both
+                <span class="text-highlight">English</span>
+                and
+                <span class="text-highlight">Spanish</span>.
+              </p>
+              <p>
+                Can also understand to some degree other variations of the
+                spanish language.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="about-meta">
-        <div class="meta-block">
-          <span class="meta-title">Skills</span>
-          <ul>
-            <li>Layout</li>
-            <li>Branding</li>
-            <li>Typography</li>
-            <li>Illustration</li>
-            <li>Photography</li>
-          </ul>
-        </div>
-
-        <div class="meta-block">
-          <span class="meta-title">Tools</span>
-          <ul>
-            <li>Clip Studio paint</li>
-            <li>Adobe Suite</li>
-            <li>Blender</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <img class="about-sticky about-desktop-layout" src="images/01-About/sticky-note.webp" />
-  <div class="about-polaroid-secret about-desktop-layout">
-    <span class="tape tape-left"></span>
-    <span class="tape tape-right"></span>
-    <img src="images/01-About/Self-Polaroid.webp" alt="Hidden portrait" />
-  </div>
-
-  <!-- mobile layout -->
-  <div class="about-mobile-layout">
-    <div class="about-mobile-scroll">
-      <img class="about-mobile-sticky" src="images/01-About/sticky-note.webp" alt="Sticky note" />
-
-      <div class="about-mobile-header">
-        <h2 class="about-mobile-name">Miguel Corral</h2>
-        <p class="about-mobile-role">Designer & Illustrator</p>
-        <div class="about-mobile-subtext">Current Student at Angelina College</div>
-      </div>
-
-      <div class="about-mobile-tag-groups">
-  <div class="about-mobile-tag-group">
-    <h3 class="about-mobile-chip-heading">Skills</h3>
-    <div class="about-mobile-tags">
-      <span class="about-tag">Layout</span>
-      <span class="about-tag">Branding</span>
-      <span class="about-tag">Typography</span>
-      <span class="about-tag">Illustration</span>
-      <span class="about-tag">Photography</span>
-    </div>
-  </div>
-
-  <div class="about-mobile-tag-group">
-    <h3 class="about-mobile-chip-heading">Tools</h3>
-    <div class="about-mobile-tags">
-      <span class="about-tag">Clip Studio</span>
-      <span class="about-tag">Adobe Suite</span>
-      <span class="about-tag">Blender</span>
-      <span class="about-tag">Bilingual</span>
-    </div>
-  </div>
-</div>
-
-      <div class="about-mobile-body">
-        <p>
-          Hi, I'm Miguel — a designer and illustrator exploring bold visual
-          systems across digital, print, and experiential spaces. I enjoy
-          creating work that is expressive, adaptable, and built to live
-          across multiple mediums.
-        </p>
-
-        <ul class="about-mobile-list">
-          <li>Creating <span class="text-highlight">visual</span> branding identities</li>
-          <li>Designing <span class="text-highlight">promotional</span> material</li>
-          <li>Designing music graphics</li>
-          <li>Creating <span class="text-highlight">illustration</span> for multiple applications</li>
-        </ul>
-
-        <p>
-          Interested in working with me? Send an email at:
-          <span class="text-highlight">miguelcorral001@icloud.com</span>
-        </p>
-
-        <h3 class="about-mobile-heading">Education</h3>
-        <p>Associate of Applied Science in Design & Applied Arts – Graphic Arts</p>
-
-        <h3 class="about-mobile-heading">Other Interests</h3>
-        <ul class="about-mobile-list">
-          <li>Arts and Crafts</li>
-          <li>Carpentry</li>
-          <li>Gardening</li>
-          <li>Electronics Tinkering</li>
-          <li>Cooking</li>
-          <li>Music / Video Games</li>
-        </ul>
-
-        <h3 class="about-mobile-heading">Language Proficiency</h3>
-        <p>
-          I have native fluency in both
-          <span class="text-highlight">English</span>
-          and
-          <span class="text-highlight">Spanish</span>.
-        </p>
-        <p>Can also understand to some degree other variations of the spanish language.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- =============================
+      <!-- =============================
    PROJECTS WINDOW
 ============================= -->
 
-<div class="window draggable" id="projects">
-  <div class="window-bar project-window-bar">
-    <div class="project-bar-left">
-      <span class="window-title">Projects</span>
+      <div class="window draggable" id="projects">
+        <div class="window-bar project-window-bar">
+          <div class="project-bar-left">
+            <span class="window-title">Projects</span>
 
-      <div class="project-bar-tabs">
-        <button class="bar-tab active" data-tab="overview">Overview</button>
-        <span class="bar-tab-divider"></span>
-        <button class="bar-tab" data-tab="gallery">Gallery</button>
-        <span class="bar-tab-divider"></span>
-        <button class="bar-tab" data-tab="process">Process</button>
-      </div>
-    </div>
-
-    <button
-      class="window-fullscreen"
-      type="button"
-      onclick="toggleWindowFullscreen('projects')"
-      aria-label="Toggle fullscreen"
-      title="Fullscreen"
-    ></button>
-
-    <button class="window-close" onclick="closeWindow('projects')"></button>
-  </div>
-
-  <div class="window-scroll">
-    <div class="tab-content active" data-tab="overview">
-      <div class="projects-grid">
-        <div class="project-card" onclick="openProject('project1', this)">
-          <img src="images/02-Projects/p1/talabarteriataly-overview.webp" loading="eager" />
-          <div class="project-info">
-            <h3>TALABARTERÍA TALY</h3>
-            <p>
-              Handcrafted identity built for leather goods and branding.
-            </p>
+            <div class="project-bar-tabs">
+              <button class="bar-tab active" data-tab="overview">
+                Overview
+              </button>
+              <span class="bar-tab-divider"></span>
+              <button class="bar-tab" data-tab="gallery">Gallery</button>
+              <span class="bar-tab-divider"></span>
+              <button class="bar-tab" data-tab="process">Process</button>
+            </div>
           </div>
+
+          <button
+            class="window-fullscreen"
+            type="button"
+            onclick="toggleWindowFullscreen('projects')"
+            aria-label="Toggle fullscreen"
+            title="Fullscreen"
+          ></button>
+
+          <button
+            class="window-close"
+            onclick="closeWindow('projects')"
+          ></button>
         </div>
 
-        <div class="project-card" onclick="openProject('project2', this)">
-          <img src="images/02-Projects/p2/elforastero-overview.webp" loading="eager" />
-          <div class="project-info">
-            <h3>EL FORASTERO JIBARITO</h3>
-            <p>
-              Expressive wordmark identity inspired by bold flavors and culture.
-            </p>
+        <div class="window-scroll">
+          <div class="tab-content active" data-tab="overview">
+            <div class="projects-grid">
+              <div class="project-card" onclick="openProject('project1', this)">
+                <img
+                  src="images/02-Projects/p1/talabarteriataly-overview.webp"
+                  loading="eager"
+                />
+                <div class="project-info">
+                  <h3>TALABARTERÍA TALY</h3>
+                  <p>
+                    Handcrafted identity built for leather goods and branding.
+                  </p>
+                </div>
+              </div>
+
+              <div class="project-card" onclick="openProject('project2', this)">
+                <img
+                  src="images/02-Projects/p2/elforastero-overview.webp"
+                  loading="eager"
+                />
+                <div class="project-info">
+                  <h3>EL FORASTERO JIBARITO</h3>
+                  <p>
+                    Expressive wordmark identity inspired by bold flavors and
+                    culture.
+                  </p>
+                </div>
+              </div>
+
+              <div class="project-card" onclick="openProject('project3', this)">
+                <img
+                  src="images/02-Projects/p3-flyers/flyers-overview.webp"
+                  loading="eager"
+                />
+                <div class="project-info">
+                  <h3>Flyer Archive</h3>
+                  <p>Favourite flyer designs over time</p>
+                </div>
+              </div>
+
+          <div class="project-card" onclick="openProject('project4', this)">
+                <img
+                  src="images/02-Projects/p4-pamphlet/pamphlet-overview.webp"
+                  loading="eager"
+                />
+                <div class="project-info">
+                  <h3>Brochure Archive</h3>
+                  <p>Recent brochure designs</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" data-tab="gallery">
+            <div id="gallery-content">
+              <p>Select a project from Overview.</p>
+            </div>
+          </div>
+
+          <div class="tab-content" data-tab="process">
+            <p>Behind the scenes, sketches, thinking process.</p>
           </div>
         </div>
-
       </div>
-    </div>
 
-    <div class="tab-content" data-tab="gallery">
-      <div id="gallery-content">
-        <p>Select a project from Overview.</p>
-      </div>
-    </div>
-
-    <div class="tab-content" data-tab="process">
-      <p>Behind the scenes, sketches, thinking process.</p>
-    </div>
-  </div>
-</div>
-
-<!-- =============================
+      <!-- =============================
    DESIGNS WINDOW
 ============================= -->
-<div class="window draggable" id="designs">
-  <div class="window-bar">
-    <span class="window-title">Designs</span>
+      <div class="window draggable" id="designs">
+        <div class="window-bar">
+          <span class="window-title">Designs</span>
 
-    <button
-      class="window-fullscreen"
-      type="button"
-      onclick="toggleWindowFullscreen('designs')"
-      aria-label="Toggle fullscreen"
-      title="Fullscreen"
-    ></button>
+          <button
+            class="window-fullscreen"
+            type="button"
+            onclick="toggleWindowFullscreen('designs')"
+            aria-label="Toggle fullscreen"
+            title="Fullscreen"
+          ></button>
 
-    <button class="window-close" onclick="closeWindow('designs')"></button>
-  </div>
-
-  <div class="window-scroll designs-scroll">
-    <div class="designs-container">
-
-      <!-- PROJECT 1 -->
-      <div class="design-item">
-        <div class="design-images one-image">
-          <img
-            src="images/03-Designs/01-boroque.webp"
-            loading="eager"
-            alt="Single poster design"
-          />
+          <button
+            class="window-close"
+            onclick="closeWindow('designs')"
+          ></button>
         </div>
 
-        <div class="design-text">
-          <h3>Chiaroscuro Food Photography</h3>
-          <p>
-            A single-poster concept focused on chiaroscuro, a strong contrasts between light and shadow
-          </p>
-          <span class="design-meta">2026 · Poster Design</span>
+        <div class="window-scroll designs-scroll">
+          <div class="designs-container">
+            <!-- PROJECT 1 -->
+            <div class="design-item">
+              <div class="design-images one-image">
+                <img
+                  src="images/03-Designs/01-boroque.webp"
+                  loading="eager"
+                  alt="Single poster design"
+                />
+              </div>
+
+              <div class="design-text">
+                <h3>Chiaroscuro Food Photography</h3>
+                <p>
+                  A single-poster concept focused on chiaroscuro, a strong
+                  contrasts between light and shadow
+                </p>
+                <span class="design-meta">2026 · Poster Design</span>
+              </div>
+            </div>
+
+            <!-- PROJECT 2 -->
+            <div class="design-item">
+              <div class="design-images three-images">
+                <img
+                  src="images/03-Designs/02-entropy-1.webp"
+                  loading="eager"
+                  alt="Editorial poster 1"
+                />
+                <img
+                  src="images/03-Designs/02-entropy-2.webp"
+                  loading="eager"
+                  alt="Editorial poster 2"
+                />
+                <img
+                  src="images/03-Designs/02-entropy-3.webp"
+                  loading="eager"
+                  alt="Editorial poster 3"
+                />
+              </div>
+
+              <div class="design-text">
+                <h3>Editorial Poster Series</h3>
+                <p>
+                  A set of typographic and color focused magazine covers that
+                  focus on the theme of entropy, the measure of randomness,
+                  decay, and uncertainty.
+                </p>
+                <span class="design-meta">2025 · Magazine Cover Design</span>
+              </div>
+            </div>
+
+            <!-- PROJECT 3 -->
+            <div class="design-item">
+              <div class="design-images one-image">
+                <img
+                  src="images/03-Designs/03-concilience.webp"
+                  loading="eager"
+                  alt="Single poster design"
+                />
+              </div>
+
+              <div class="design-text">
+                <h3>Concilience Study</h3>
+                <p>
+                  A single-poster design and study over the correlation of one
+                  subject and another outside its field. Visual provided only
+                </p>
+                <span class="design-meta">2025 · Poster Design</span>
+              </div>
+            </div>
+
+            <!-- PROJECT 4 -->
+            <div class="design-item">
+              <div class="design-images two-images">
+                <img
+                  src="images/03-Designs/04-Fashion-1.webp"
+                  loading="eager"
+                  alt="Flyer design 1"
+                />
+                <img
+                  src="images/03-Designs/04-Fashion-2.webp"
+                  loading="eager"
+                  alt="Flyer design 2"
+                />
+              </div>
+
+              <div class="design-text">
+                <h3>Flyer System</h3>
+                <p>
+                  A set of poster designs that focuses on fashion and modeling
+                  for the camera.
+                </p>
+                <span class="design-meta">2025 · Graphic Design</span>
+              </div>
+            </div>
+
+            <!-- PROJECT 5 -->
+            <div class="design-item">
+              <div class="design-images one-image">
+                <img
+                  src="images/03-Designs/05-architecture.webp"
+                  loading="lazy"
+                  alt="Single poster design"
+                />
+              </div>
+
+              <div class="design-text">
+                <h3>Local Architecture</h3>
+                <p>
+                  A single-magazine concept focused on mood, lighting and most
+                  importantly capturing the local architecture.
+                </p>
+                <span class="design-meta">2025 · Magazine Design</span>
+              </div>
+            </div>
+
+            <!-- PROJECT 6 -->
+            <div class="design-item">
+              <div class="design-images two-images">
+                <img
+                  src="images/03-Designs/06-Food-1.webp"
+                  loading="lazy"
+                  alt="Flyer design 1"
+                />
+                <img
+                  src="images/03-Designs/06-Food-2.webp"
+                  loading="lazy"
+                  alt="Flyer design 2"
+                />
+              </div>
+
+              <div class="design-text">
+                <h3>Designing with Food</h3>
+                <p>
+                  Simple set of magazine covers that use personally prepared
+                  food and styled to fit what would typically be found on a
+                  magazine cover, although with some creative liberties.
+                </p>
+                <span class="design-meta">2025 · Magazine Cover</span>
+              </div>
+            </div>
+
+            <!-- PROJECT 7 -->
+            <div class="design-item">
+              <div class="design-images two-images">
+                <img
+                  src="images/03-Designs/07-Light-1.webp"
+                  loading="lazy"
+                  alt="Flyer design 1"
+                />
+                <img
+                  src="images/03-Designs/07-Light-2.webp"
+                  loading="lazy"
+                  alt="Flyer design 2"
+                />
+              </div>
+
+              <div class="design-text">
+                <h3>Designing with Light</h3>
+                <p>
+                  A set of designs that used experimental photoshoots involving
+                  leaving the shutter on to capture light in a shot.
+                </p>
+                <span class="design-meta">2024 · Graphic Design</span>
+              </div>
+            </div>
+
+            <!-- PROJECT 8 -->
+            <div class="design-item">
+              <div class="design-images three-images">
+                <img
+                  src="images/03-Designs/08-Self-1.webp"
+                  loading="lazy"
+                  alt="Editorial poster 1"
+                />
+                <img
+                  src="images/03-Designs/08-Self-2.webp"
+                  loading="lazy"
+                  alt="Editorial poster 2"
+                />
+                <img
+                  src="images/03-Designs/08-Self-3.webp"
+                  loading="lazy"
+                  alt="Editorial poster 3"
+                />
+              </div>
+
+              <div class="design-text">
+                <h3>Self Perception</h3>
+                <p>
+                  A trio of poster and magazine designs that try to convey the
+                  idea of the inner self, and the perception one may draw.
+                </p>
+                <span class="design-meta">2024 · Poster/Magazine Design</span>
+              </div>
+            </div>
+
+            <!-- PROJECT 9 -->
+            <div class="design-item">
+              <div class="design-images two-images">
+                <img
+                  src="images/03-Designs/09-Infographic-1.webp"
+                  loading="lazy"
+                  alt="Flyer design 1"
+                />
+                <img
+                  src="images/03-Designs/09-Infographic-2.webp"
+                  loading="lazy"
+                  alt="Flyer design 2"
+                />
+              </div>
+
+              <div class="design-text">
+                <h3>Infographic Posters</h3>
+                <p>
+                  Educational Infographics that aim to educate and be pssible
+                  used in an educational setting.
+                </p>
+                <span class="design-meta">2023 · Graphic Design</span>
+              </div>
+            </div>
+
+            <!-- PROJECT 10 -->
+            <div class="design-item">
+              <div class="design-images three-images">
+                <img
+                  src="images/03-Designs/10-MovieP-1.webp"
+                  loading="lazy"
+                  alt="Editorial poster 1"
+                />
+                <img
+                  src="images/03-Designs/10-MovieP-2.webp"
+                  loading="lazy"
+                  alt="Editorial poster 2"
+                />
+                <img
+                  src="images/03-Designs/10-MovieP-3.webp"
+                  loading="lazy"
+                  alt="Editorial poster 3"
+                />
+              </div>
+
+              <div class="design-text">
+                <h3>Redesigned Movie Posters</h3>
+                <p>
+                  A reimagined set of movie posters made to help learn about
+                  vectors, and designing with them.
+                </p>
+                <span class="design-meta">2023 · Poster Design</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- PROJECT 2 -->
-      <div class="design-item">
-        <div class="design-images three-images">
-          <img
-            src="images/03-Designs/02-entropy-1.webp"
-            loading="eager"
-            alt="Editorial poster 1"
-          />
-          <img
-            src="images/03-Designs/02-entropy-2.webp"
-            loading="eager"
-            alt="Editorial poster 2"
-          />
-          <img
-            src="images/03-Designs/02-entropy-3.webp"
-            loading="eager"
-            alt="Editorial poster 3"
-          />
-        </div>
-
-        <div class="design-text">
-          <h3>Editorial Poster Series</h3>
-          <p>
-            A set of typographic and color focused magazine covers that focus on the theme of entropy, 
-            the measure of randomness, decay, and uncertainty.
-          </p>
-          <span class="design-meta">2025 · Magazine Cover Design</span>
-        </div>
-      </div>
-      
-      <!-- PROJECT 3 -->
-      <div class="design-item">
-        <div class="design-images one-image">
-          <img
-            src="images/03-Designs/03-concilience.webp"
-            loading="eager"
-            alt="Single poster design"
-          />
-        </div>
-
-        <div class="design-text">
-          <h3>Concilience Study</h3>
-          <p>
-            A single-poster design and study over the correlation of one subject and another outside its field.
-             Visual provided only
-          </p>
-          <span class="design-meta">2025 · Poster Design</span>
-        </div>
-      </div>
-
-      <!-- PROJECT 4 -->
-      <div class="design-item">
-        <div class="design-images two-images">
-          <img
-            src="images/03-Designs/04-Fashion-1.webp"
-            loading="eager"
-            alt="Flyer design 1"
-          />
-          <img
-            src="images/03-Designs/04-Fashion-2.webp"
-            loading="eager"
-            alt="Flyer design 2"
-          />
-        </div>
-
-        <div class="design-text">
-          <h3>Flyer System</h3>
-          <p>
-            A set of poster designs that focuses on fashion and modeling for the camera. 
-          </p>
-          <span class="design-meta">2025 · Graphic Design</span>
-        </div>
-      </div>
-
-      <!-- PROJECT 5 -->
-      <div class="design-item">
-        <div class="design-images one-image">
-          <img
-            src="images/03-Designs/05-architecture.webp"
-            loading="lazy"
-            alt="Single poster design"
-          />
-        </div>
-
-        <div class="design-text">
-          <h3>Local Architecture</h3>
-          <p>
-            A single-magazine concept focused on mood, lighting and most importantly capturing
-            the local architecture.
-          </p>
-          <span class="design-meta">2025 · Magazine Design</span>
-        </div>
-      </div>
-
-      <!-- PROJECT 6 -->
-      <div class="design-item">
-        <div class="design-images two-images">
-          <img
-            src="images/03-Designs/06-Food-1.webp"
-            loading="lazy"
-            alt="Flyer design 1"
-          />
-          <img
-            src="images/03-Designs/06-Food-2.webp"
-            loading="lazy"
-            alt="Flyer design 2"
-          />
-        </div>
-
-        <div class="design-text">
-          <h3>Designing with Food</h3>
-          <p>
-            Simple set of magazine covers that use personally prepared food and styled to fit
-            what would typically be found on a magazine cover, although with some creative liberties.
-          </p>
-          <span class="design-meta">2025 · Magazine Cover</span>
-        </div>
-      </div>
-
-      <!-- PROJECT 7 -->
-      <div class="design-item">
-        <div class="design-images two-images">
-          <img
-            src="images/03-Designs/07-Light-1.webp"
-            loading="lazy"
-            alt="Flyer design 1"
-          />
-          <img
-            src="images/03-Designs/07-Light-2.webp"
-            loading="lazy"
-            alt="Flyer design 2"
-          />
-        </div>
-
-        <div class="design-text">
-          <h3>Designing with Light</h3>
-          <p>
-            A set of designs that used experimental photoshoots involving leaving the shutter on to
-            capture light in a shot.
-          </p>
-          <span class="design-meta">2024 · Graphic Design</span>
-        </div>
-      </div>
-
-      <!-- PROJECT 8 -->
-      <div class="design-item">
-        <div class="design-images three-images">
-          <img
-            src="images/03-Designs/08-Self-1.webp"
-            loading="lazy"
-            alt="Editorial poster 1"
-          />
-          <img
-            src="images/03-Designs/08-Self-2.webp"
-            loading="lazy"
-            alt="Editorial poster 2"
-          />
-          <img
-            src="images/03-Designs/08-Self-3.webp"
-            loading="lazy"
-            alt="Editorial poster 3"
-          />
-        </div>
-
-        <div class="design-text">
-          <h3>Self Perception</h3>
-          <p>
-            A trio of poster and magazine designs that try to convey the idea of the inner self, 
-            and the perception one may draw.
-          </p>
-          <span class="design-meta">2024 · Poster/Magazine Design</span>
-        </div>
-      </div>
-
-      <!-- PROJECT 9 -->
-      <div class="design-item">
-        <div class="design-images two-images">
-          <img
-            src="images/03-Designs/09-Infographic-1.webp"
-            loading="lazy"
-            alt="Flyer design 1"
-          />
-          <img
-            src="images/03-Designs/09-Infographic-2.webp"
-            loading="lazy"
-            alt="Flyer design 2"
-          />
-        </div>
-
-        <div class="design-text">
-          <h3>Infographic Posters</h3>
-          <p>
-            Educational Infographics that aim to educate and be pssible used in an educational setting.
-          </p>
-          <span class="design-meta">2023 · Graphic Design</span>
-        </div>
-      </div>
-
-      <!-- PROJECT 10 -->
-      <div class="design-item">
-        <div class="design-images three-images">
-          <img
-            src="images/03-Designs/10-MovieP-1.webp"
-            loading="lazy"
-            alt="Editorial poster 1"
-          />
-          <img
-            src="images/03-Designs/10-MovieP-2.webp"
-            loading="lazy"
-            alt="Editorial poster 2"
-          />
-          <img
-            src="images/03-Designs/10-MovieP-3.webp"
-            loading="lazy"
-            alt="Editorial poster 3"
-          />
-        </div>
-
-        <div class="design-text">
-          <h3>Redesigned Movie Posters</h3>
-          <p>
-            A reimagined set of movie posters made to help learn about vectors, and designing with them.
-          </p>
-          <span class="design-meta">2023 · Poster Design</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- =============================
+      <!-- =============================
    MISC WINDOW
 ============================= -->
-<div class="window draggable" id="misc">
-  <div class="window-bar">
-    <span class="window-title">Misc</span>
-    <button class="window-close" onclick="closeWindow('misc')"></button>
-  </div>
+      <div class="window draggable" id="misc">
+        <div class="window-bar">
+          <span class="window-title">Misc</span>
+          <button class="window-close" onclick="closeWindow('misc')"></button>
+        </div>
 
-  <div class="misc-window-note">
-    Double-click to fullscreen · Hold space + click for polaroid view
-  </div>
+        <div class="misc-window-note">
+          Double-click to fullscreen · Hold space + click for polaroid view
+        </div>
 
-  <div class="window-scroll">
-    <div class="misc-scatter">
-      <img
-        class="draggable-photo"
-        src="images/04-Misc/misc-ignite.webp"
-        loading="lazy"
-        data-caption="Learning about vectors while making some cool skull designs"
-      />
-      <img
-        class="draggable-photo"
-        src="images/04-Misc/misc-chicken.webp"
-        loading="lazy"
-        data-caption="Edgy design I drew and wanted to vectorize"
-      />
-      <img
-        class="draggable-photo"
-        src="images/04-Misc/misc-onlooker.webp"
-        loading="lazy"
-        data-caption="small drawing made during my off-time in class"
-      />
-    </div>
-  </div>
-</div>
-    <!-- =============================
+        <div class="window-scroll">
+          <div class="misc-scatter">
+            <img
+              class="draggable-photo"
+              src="images/04-Misc/misc-ignite.webp"
+              loading="lazy"
+              data-caption="Learning about vectors while making some cool skull designs"
+            />
+            <img
+              class="draggable-photo"
+              src="images/04-Misc/misc-chicken.webp"
+              loading="lazy"
+              data-caption="Edgy design I drew and wanted to vectorize"
+            />
+            <img
+              class="draggable-photo"
+              src="images/04-Misc/misc-onlooker.webp"
+              loading="lazy"
+              data-caption="small drawing made during my off-time in class"
+            />
+            <img
+              class="draggable-photo"
+              src="images/04-Misc/misc-chef.webp"
+              loading="lazy"
+              data-caption="Illustration I made for a class assignment"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- =============================
        CONTACT WINDOW
   ============================== -->
-   <div class="window draggable" id="contact">
+      <div class="window draggable" id="contact">
+        <div class="window-bar">
+          <span class="window-title">Contact</span>
+          <button
+            class="window-close"
+            onclick="closeWindow('contact')"
+          ></button>
+        </div>
+
+        <div class="window-scroll contact-scroll">
+          <div class="contact-content">
+            <h2 class="contact-main-title">Let’s Connect</h2>
+
+            <p class="contact-description">
+              Available for freelance work, collaborations, and selected
+              projects.
+            </p>
+
+            <div class="contact-image-wrap">
+              <img
+                src="images/work.jpg"
+                alt="Contact preview"
+                class="contact-image"
+              />
+            </div>
+
+            <div class="contact-subtext">
+              <div class="contact-email">
+                <span class="contact-email-label">Email me at :</span>
+                <span class="contact-email-address" id="contactEmail">
+                  miguelcorral001@icloud.com
+                </span>
+              </div>
+              <div class="contact-note">
+                Feel free to reach out for project inquiries or creative
+                collaborations.
+              </div>
+            </div>
+
+            <button class="contact-action desktop-only" onclick="openWindow('sketchpad')">
+              Leave a Note
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="sketchpad" class="window">
   <div class="window-bar">
-    <span class="window-title">Contact</span>
-    <button class="window-close" onclick="closeWindow('contact')"></button>
+    <span class="window-title">Sketch Note</span>
+    <button class="window-close" onclick="closeWindow('sketchpad')"></button>
   </div>
 
-  <div class="window-scroll contact-scroll">
-    <div class="contact-content">
-      <h2 class="contact-main-title">Let’s Connect</h2>
+  <div class="window-scroll sketchpad-scroll">
+    <div class="sketchpad-ui">
+      <div class="sketchpad-toolbar">
+        <button type="button" class="swatch swatch-black" onclick="setBrushColor('#111111')" title="Black"></button>
+        <button type="button" class="swatch swatch-orange" onclick="setBrushColor('#f6a23a')" title="Orange"></button>
+        <button type="button" class="swatch swatch-blue" onclick="setBrushColor('#2f6df6')" title="Blue"></button>
+        <button type="button" class="swatch swatch-red" onclick="setBrushColor('#d64545')" title="Red"></button>
 
-      <p class="contact-description">
-        Available for freelance work, collaborations, and selected projects.
-      </p>
+        <div class="toolbar-sep"></div>
 
-      <div class="contact-image-wrap">
-        <img src="images/work.jpg" alt="Contact preview" class="contact-image" />
+        <button type="button" class="tool-btn tool-btn-eraser" onclick="setEraser()">Eraser</button>
+        <button type="button" class="tool-btn tool-btn-stamp" onclick="setStampMode()">Stamp</button>
+        <button type="button" class="tool-btn" onclick="undoSketch()">Undo</button>
+        <button type="button" class="tool-btn" onclick="redoSketch()">Redo</button>
+        <button type="button" class="tool-btn" onclick="clearSketchpad()">Clear</button>
+        <button type="button" class="tool-btn" onclick="emailSketchpad()">Email</button>
       </div>
 
-      <div class="contact-subtext">
-        <div class="contact-email">
-          <span class="contact-email-label">Email me at :</span>
-          <span class="contact-email-address" id="contactEmail">
-          miguelcorral001@icloud.com
-          </span>
-        </div>
-        <div class="contact-note">
-          Feel free to reach out for project inquiries or creative collaborations.
-        </div>
+      <div class="sketchpad-canvas-wrap">
+        <canvas id="sketchCanvas"></canvas>
       </div>
-
-      <button class="contact-action">Button</button>
     </div>
   </div>
 </div>
-
-    <!-- =============================
+      <!-- =============================
        OVERLAY
   ============================== -->
-    <div id="overlay" class="overlay"></div>
+      <div id="overlay" class="overlay"></div>
 
-    <div class="image-viewer" id="imageViewer">
-      <button id="viewerZoom">Zoom</button>
-      <div id="viewerHint" class="viewer-hint">Click outside image to close</div>
-      <img id="viewerImage" />
-    </div>
+      <div class="image-viewer" id="imageViewer">
+        <button id="viewerZoom">Zoom</button>
+        <div id="viewerHint" class="viewer-hint">
+          Click outside image to close
+        </div>
+        <img id="viewerImage" />
+      </div>
 
-    <div id="polaroidBackdrop"></div>
+      <div id="polaroidBackdrop"></div>
 
-    <!-- SCRIPTS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-    <script src="script.js"></script>
-    <script src="mobile.js"></script>
-  </body>
-</head>
+      <!-- SCRIPTS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+      <script src="script.js"></script>
+      <script src="mobile.js"></script>
+    </body>
+  </head>
 </html>

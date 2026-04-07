@@ -90,11 +90,6 @@ const sounds = {
     src: ["sounds/fullscreen-off.mp3"],
     volume: 0.45,
   }),
-
-  intro: new Howl({
-    src: ["sounds/intro.mp3"],
-    volume: 0.35,
-  }),
 };
 
 let soundUnlocked = false;
@@ -116,27 +111,12 @@ function playSound(sound) {
 }
 let soundToggleLocked = false;
 
-function playIntroSound() {
-  if (introPlayed || !soundEnabled) return;
-  introPlayed = true;
-
-  sounds.intro.volume(0);
-  sounds.intro.play();
-
-  setTimeout(() => {
-    sounds.intro.volume(0.35);
-  }, 40);
-}
-
 function toggleSound() {
   if (soundToggleLocked) return;
   soundToggleLocked = true;
 
   soundEnabled = !soundEnabled;
   localStorage.setItem("soundEnabled", String(soundEnabled));
-
-  // ✅ ADD THIS LINE
-  document.body.classList.toggle("sound-off", !soundEnabled);
 
   updateSoundToggle();
   document.body.classList.toggle("sound-off", !soundEnabled);
@@ -158,23 +138,13 @@ function updateSoundToggle() {
 
 updateSoundToggle();
 
-["click", "mousemove", "touchstart"].forEach((event) => {
-  document.addEventListener(
-    event,
-    () => {
-      unlockSound();
-      playIntroSound();
-    },
-    { once: true },
-  );
-});
-
 document.querySelectorAll(".bar-tab").forEach((el) => {
   el.addEventListener("click", () => {
     playSound(sounds.tap);
   });
 });
 
+document.addEventListener("pointerdown", unlockSound, { once: true });
 /* =====================================
    SPACE KEY STATE
 ===================================== */
@@ -235,6 +205,16 @@ window.openWindow = function (id) {
       win.style.left = windowState[id].left;
       win.style.top = windowState[id].top;
     }
+  }
+
+  if (id === "sketchpad") {
+    requestAnimationFrame(() => {
+      resizeSketchCanvas();
+      if (!sketchCanvas.dataset.ready) {
+        clearSketchpad();
+        sketchCanvas.dataset.ready = "true";
+      }
+    });
   }
 
   const scroll = win.querySelector(".window-scroll");
@@ -598,6 +578,16 @@ const projectData = {
   project2: {
     images: ["images/02-Projects/p2/elforastero-visual.webp"],
     processImages: ["images/02-Projects/p2/elforastero-visualprocess.webp"],
+  },
+
+  project3: {
+    images: ["images/02-Projects/p3-flyers/flyers-visual.webp"],
+    processImages: ["images/02-Projects/p3-flyers/flyers-visualprocess.webp"],
+  },
+
+  project4: {
+    images: ["images/02-Projects/p4-pamphlet/pamphlet-visual.webp"],
+    processImages: ["images/02-Projects/p3-flyers/flyers-visualprocess.webp"],
   },
 };
 
@@ -1127,3 +1117,215 @@ contactEmail?.addEventListener("click", () => {
     }, 1200);
   });
 });
+
+const sketchCanvas = document.getElementById("sketchCanvas");
+const sketchCtx = sketchCanvas ? sketchCanvas.getContext("2d") : null;
+
+let sketchDrawing = false;
+let sketchColor = "#111111";
+let sketchSize = 3.5;
+let sketchMode = "draw"; // draw | stamp
+
+const undoStack = [];
+const redoStack = [];
+
+const stampImg = new Image();
+stampImg.src = "images/icons/Stamp.png"; // change path if needed
+
+if (sketchCtx) {
+  sketchCtx.lineCap = "round";
+  sketchCtx.lineJoin = "round";
+}
+
+function saveSketchState() {
+  if (!sketchCanvas) return;
+  undoStack.push(sketchCanvas.toDataURL("image/png"));
+  if (undoStack.length > 40) undoStack.shift();
+  redoStack.length = 0;
+}
+
+function restoreSketchState(dataUrl) {
+  if (!sketchCanvas || !sketchCtx || !dataUrl) return;
+
+  const img = new Image();
+  img.onload = () => {
+    const rect = sketchCanvas.getBoundingClientRect();
+    sketchCtx.fillStyle = "#ffffff";
+    sketchCtx.fillRect(0, 0, rect.width, rect.height);
+    sketchCtx.drawImage(img, 0, 0, rect.width, rect.height);
+  };
+  img.src = dataUrl;
+}
+
+function resizeSketchCanvas() {
+  if (!sketchCanvas || !sketchCtx) return;
+
+  const rect = sketchCanvas.getBoundingClientRect();
+  if (!rect.width || !rect.height) return;
+
+  const ratio = window.devicePixelRatio || 1;
+
+  const oldCanvas = document.createElement("canvas");
+  oldCanvas.width = sketchCanvas.width;
+  oldCanvas.height = sketchCanvas.height;
+  const oldCtx = oldCanvas.getContext("2d");
+  oldCtx.drawImage(sketchCanvas, 0, 0);
+
+  sketchCanvas.width = Math.floor(rect.width * ratio);
+  sketchCanvas.height = Math.floor(rect.height * ratio);
+
+  sketchCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  sketchCtx.imageSmoothingEnabled = true;
+  sketchCtx.fillStyle = "#ffffff";
+  sketchCtx.fillRect(0, 0, rect.width, rect.height);
+
+  if (oldCanvas.width && oldCanvas.height) {
+    sketchCtx.drawImage(
+      oldCanvas,
+      0,
+      0,
+      oldCanvas.width,
+      oldCanvas.height,
+      0,
+      0,
+      rect.width,
+      rect.height,
+    );
+  }
+
+  sketchCtx.lineCap = "round";
+  sketchCtx.lineJoin = "round";
+}
+
+function getSketchPos(e) {
+  const rect = sketchCanvas.getBoundingClientRect();
+  return {
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top,
+  };
+}
+
+function startSketch(e) {
+  if (!sketchCanvas || !sketchCtx) return;
+
+  if (sketchMode === "stamp") {
+    placeStamp(e);
+    return;
+  }
+
+  saveSketchState();
+  sketchDrawing = true;
+
+  const pos = getSketchPos(e);
+  sketchCtx.beginPath();
+  sketchCtx.moveTo(pos.x, pos.y);
+}
+
+function drawSketch(e) {
+  if (!sketchDrawing || !sketchCanvas || !sketchCtx) return;
+
+  const pos = getSketchPos(e);
+  sketchCtx.strokeStyle = sketchColor;
+  sketchCtx.lineWidth = sketchSize;
+  sketchCtx.lineTo(pos.x, pos.y);
+  sketchCtx.stroke();
+}
+
+function endSketch() {
+  if (!sketchCtx) return;
+  sketchDrawing = false;
+  sketchCtx.beginPath();
+}
+
+function setBrushColor(color) {
+  sketchMode = "draw";
+  sketchColor = color;
+  sketchSize = 3.5;
+  updateSketchToolState();
+}
+
+function setEraser() {
+  sketchMode = "draw";
+  sketchColor = "#ffffff";
+  sketchSize = 16;
+  updateSketchToolState();
+}
+
+function setStampMode() {
+  sketchMode = "stamp";
+  updateSketchToolState();
+}
+
+function placeStamp(e) {
+  if (!sketchCanvas || !sketchCtx || !stampImg.complete) return;
+
+  const pos = getSketchPos(e);
+  const size = 42;
+
+  saveSketchState();
+  sketchCtx.drawImage(stampImg, pos.x - size / 2, pos.y - size / 2, size, size);
+}
+
+function clearSketchpad() {
+  if (!sketchCanvas || !sketchCtx) return;
+
+  saveSketchState();
+
+  sketchCtx.save();
+  sketchCtx.setTransform(1, 0, 0, 1, 0, 0);
+  sketchCtx.fillStyle = "#ffffff";
+  sketchCtx.fillRect(0, 0, sketchCanvas.width, sketchCanvas.height);
+  sketchCtx.restore();
+}
+
+function undoSketch() {
+  if (!sketchCanvas || !undoStack.length) return;
+  redoStack.push(sketchCanvas.toDataURL("image/png"));
+  restoreSketchState(undoStack.pop());
+}
+
+function redoSketch() {
+  if (!sketchCanvas || !redoStack.length) return;
+  undoStack.push(sketchCanvas.toDataURL("image/png"));
+  restoreSketchState(redoStack.pop());
+}
+
+function downloadSketchpad() {
+  if (!sketchCanvas) return;
+
+  const link = document.createElement("a");
+  link.download = "sayaaku-note.png";
+  link.href = sketchCanvas.toDataURL("image/png");
+  link.click();
+}
+
+function emailSketchpad() {
+  downloadSketchpad();
+  window.location.href =
+    "mailto:miguelcorral001@icloud.com?subject=Sketch from site";
+}
+
+if (sketchCanvas) {
+  sketchCanvas.addEventListener("mousedown", startSketch);
+  sketchCanvas.addEventListener("mousemove", drawSketch);
+  window.addEventListener("mouseup", endSketch);
+}
+
+updateSketchToolState();
+
+function updateSketchToolState() {
+  document.querySelectorAll(".tool-btn").forEach((btn) => {
+    btn.classList.remove("active-tool");
+  });
+
+  const stampBtn = document.querySelector(".tool-btn-stamp");
+  const eraserBtn = document.querySelector(".tool-btn-eraser");
+
+  if (sketchMode === "stamp" && stampBtn) {
+    stampBtn.classList.add("active-tool");
+  }
+
+  if (sketchMode === "draw" && sketchColor === "#ffffff" && eraserBtn) {
+    eraserBtn.classList.add("active-tool");
+  }
+}

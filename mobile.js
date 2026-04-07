@@ -109,3 +109,14 @@ if (window.visualViewport) {
   window.visualViewport.addEventListener("resize", runMobileLayoutPass);
   window.visualViewport.addEventListener("scroll", runMobileLayoutPass);
 }
+
+function closeWindow(id) {
+  const win = document.getElementById(id);
+
+  win.classList.add("closing");
+
+  setTimeout(() => {
+    win.classList.remove("closing");
+    win.style.display = "none";
+  }, 380);
+}
