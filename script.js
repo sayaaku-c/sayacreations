@@ -587,7 +587,7 @@ const projectData = {
 
   project4: {
     images: ["images/02-Projects/p4-pamphlet/pamphlet-visual.webp"],
-    processImages: ["images/02-Projects/p3-flyers/flyers-visualprocess.webp"],
+    processImages: ["images/02-Projects/p4-pamphlet/pamphlet-visualprocess.webp"],
   },
 };
 
