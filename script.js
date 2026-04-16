@@ -1130,7 +1130,7 @@ const undoStack = [];
 const redoStack = [];
 
 const stampImg = new Image();
-stampImg.src = "images/icons/Stamp.png"; // change path if needed
+stampImg.src = "images/05-Contact/Stamp.png"; // change path if needed
 
 if (sketchCtx) {
   sketchCtx.lineCap = "round";
