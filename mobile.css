@@ -219,32 +219,22 @@
   }
 
   .window.closing {
-    animation: mobileSheetOut 0.28s ease forwards;
-  }
-
-  @keyframes mobileSheetOut {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(30%);
-    }
-  }
-
-  .window.closing {
   animation: mobileSheetOut 0.38s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
 }
 
 @keyframes mobileSheetOut {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(30px);
-    opacity: 0;
-  }
+   0% {
+      transform: translateY(42%);
+      opacity: 1;
+    }
+    88% {
+      transform: translateY(-2px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
 }
 
   .window-bar {

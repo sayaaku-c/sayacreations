@@ -53,12 +53,12 @@ const sounds = {
 
   open: new Howl({
     src: ["sounds/open.mp3"],
-    volume: 0.4,
+    volume: 0.35,
   }),
 
   close: new Howl({
     src: ["sounds/close.mp3"],
-    volume: 0.35,
+    volume: 0.3,
   }),
 
   light: new Howl({
