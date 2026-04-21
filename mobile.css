@@ -190,10 +190,13 @@
     border-radius: 8px 8px 0 0 !important;
     box-sizing: border-box;
     overflow: hidden !important;
-    transform: none;
+    transform: translateY(0); /* instead of none */
     opacity: 1;
     filter: blur(0px);
     transition: none !important;
+
+    will-change: transform;
+  backface-visibility: hidden;
   }
 
   .window.opening {
@@ -202,37 +205,34 @@
     animation: mobileSheetIn 0.42s cubic-bezier(0.22, 0.9, 0.2, 1) both !important;
   }
 
-  @keyframes mobileSheetIn {
-    0% {
-      transform: translateY(42%);
-      opacity: 1;
-    }
-    88% {
-      transform: translateY(-2px);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
+@keyframes mobileSheetIn {
+  0% {
+    transform: translateY(45%);
   }
+  85% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 
   .window.closing {
-    animation: mobileSheetOut 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: mobileSheetOut 0.42s cubic-bezier(0.22, 0.9, 0.2, 1) both;
+  pointer-events: none;
+  will-change: transform;
   }
 
-  @keyframes mobileSheetOut {
-    0% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    12% {
-      transform: translateY(-2px); /* tiny bounce like opening */
-    }
-    100% {
-      transform: translateY(42%);
-      opacity: 1; /* keep visible while sliding */
-    }
+@keyframes mobileSheetOut {
+  0% {
+    transform: translateY(0);
+  }
+  15% {
+    transform: translateY(-2px); /* tiny lift before drop (feels natural) */
+  }
+  100% {
+    transform: translateY(45%);
+  }
   }
 
   .window-bar {
@@ -572,7 +572,6 @@
     margin: 0 auto;
     display: block;
   }
-}
 
 .image-viewer {
   position: fixed;

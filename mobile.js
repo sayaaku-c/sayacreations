@@ -113,10 +113,15 @@ if (window.visualViewport) {
 function closeWindow(id) {
   const win = document.getElementById(id);
 
+  win.classList.remove("opening");
+
+  // force reflow (good)
+  win.offsetHeight;
+
   win.classList.add("closing");
 
   setTimeout(() => {
     win.classList.remove("closing");
     win.style.display = "none";
-  }, 380);
+  }, 420);
 }
