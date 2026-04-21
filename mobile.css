@@ -508,7 +508,8 @@
   #projects .window-bar {
     height: 52px;
     padding: 8px 46px 8px 14px;
-    align-items: flex-start;
+    display: flex;
+    align-items: center; /* 👈 fix */
   }
 
   #projects .project-bar-left {
