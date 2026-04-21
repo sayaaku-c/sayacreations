@@ -480,6 +480,8 @@ tabButtons.forEach((button) => {
     const theme = tabThemes[target];
     projectsWindow.style.setProperty("--tab-color", theme.main);
     projectsWindow.style.setProperty("--tab-light", theme.light);
+
+    projectsWindow.querySelector(".window-scroll").scrollTop = 0;
   });
 });
 
@@ -587,7 +589,9 @@ const projectData = {
 
   project4: {
     images: ["images/02-Projects/p4-pamphlet/pamphlet-visual.webp"],
-    processImages: ["images/02-Projects/p4-pamphlet/pamphlet-visualprocess.webp"],
+    processImages: [
+      "images/02-Projects/p4-pamphlet/pamphlet-visualprocess.webp",
+    ],
   },
 };
 
@@ -1303,6 +1307,18 @@ function emailSketchpad() {
   downloadSketchpad();
   window.location.href =
     "mailto:miguelcorral001@icloud.com?subject=Sketch from site";
+}
+
+function sendSketch() {
+  const link = document.createElement("a");
+  link.download = "sketch.png";
+  link.href = Canvas.toDataURL("image/png");
+  link.click();
+
+  window.location.href =
+    "mailto:miguelcorral001@icloud.com?subject=A sketch from One to Another";
+
+  const filename = "sketch-${Date.now()}.png";
 }
 
 if (sketchCanvas) {
