@@ -238,9 +238,8 @@
   }
 
   .window-bar {
-    height: 38px; /* slightly shorter */
-    padding: 0 50px 4px 14px; /* 👈 pushes content UP */
-    align-items: flex-start; /* 👈 important */
+    height: 42px;
+    padding: 0 50px 0 14px;
     cursor: default !important;
     border-radius: 8px 8px 0 0;
   }
@@ -253,6 +252,12 @@
   .window:active,
   .window.dragging {
     transform: none !important;
+  }
+
+  .window-bar {
+    height: 42px;
+    padding: 0 50px 0 14px;
+    cursor: default !important;
   }
 
   .window-title {
@@ -499,8 +504,8 @@
   }
 
   #projects .window-bar {
-    height: 46px;
-    padding: 4px 46px 6px 14px;
+    height: 52px;
+    padding: 8px 46px 8px 14px;
     align-items: flex-start;
   }
 
