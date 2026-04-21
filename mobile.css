@@ -24,6 +24,11 @@
     align-items: center;
   }
 
+  .hero {
+    align-items: flex-start;
+    padding-top: 120px;
+  }
+
   .theme-toggle {
     position: fixed;
     top: calc(12px + var(--mobile-top-offset));
@@ -103,7 +108,7 @@
     justify-items: center;
 
     margin: 0 auto;
-    transform: translateY(8px);
+    transform: translateY(3vh);
   }
 
   .nav-grid button:nth-child(4) {
