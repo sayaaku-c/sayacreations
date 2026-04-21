@@ -15,18 +15,12 @@
   .hero {
     min-height: 100vh;
     height: 100vh;
-    padding: 78px 16px 64px;
     box-sizing: border-box;
     overflow: hidden;
 
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .hero {
-    align-items: flex-start;
-    padding-top: 120px;
   }
 
   .theme-toggle {
@@ -108,7 +102,7 @@
     justify-items: center;
 
     margin: 0 auto;
-    transform: translateY(3vh);
+    transform: translateY(-18vh);
   }
 
   .nav-grid button:nth-child(4) {
@@ -247,6 +241,9 @@
     padding: 0 50px 0 14px;
     cursor: default !important;
     border-radius: 8px 8px 0 0;
+
+    display: flex;
+    align-items: center; /* 👈 THIS fixes vertical centering */
   }
 
   .window::before {
