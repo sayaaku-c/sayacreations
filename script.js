@@ -582,6 +582,11 @@ const projectData = {
     processImages: ["images/02-Projects/p2/elforastero-visualprocess.webp"],
   },
 
+  project5: {
+    images: ["images/02-Projects/p3/Crumbs-Visual.webp"],
+    processImages: ["images/02-Projects/p3/Crumbs-visualprocess.webp"],
+  },
+
   project3: {
     images: ["images/02-Projects/p3-flyers/flyers-visual.webp"],
     processImages: ["images/02-Projects/p3-flyers/flyers-visualprocess.webp"],
