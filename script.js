@@ -583,7 +583,7 @@ const projectData = {
   },
 
   project5: {
-    images: ["images/02-Projects/p3/Crumbs-Visual.webp"],
+    images: ["images/02-Projects/p3/Crumbs-visual.webp"],
     processImages: ["images/02-Projects/p3/Crumbs-visualprocess.webp"],
   },
 
